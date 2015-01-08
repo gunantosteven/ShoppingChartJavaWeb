@@ -56,7 +56,7 @@ public class AdminProductController {
     }
     
     @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.GET)
-    public String pageEdit(ModelMap modelMap, @PathVariable String uuid, HttpServletResponse httpServletResponse) {
+    public String pageEdit(ModelMap modelMap, @PathVariable String uuid) {
         modelMap.addAttribute("masterActive", "active");
         modelMap.addAttribute("productActive", "active");
         modelMap.addAttribute("product", productService.getById(uuid));

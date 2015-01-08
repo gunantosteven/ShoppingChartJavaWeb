@@ -5,6 +5,7 @@
  */
 package com.gunsoft.service;
 
+import com.gunsoft.bean.Category;
 import com.gunsoft.bean.Product;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,13 @@ public class ProductService extends BaseService<Product>  {
         return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product")
                 .setMaxResults(limit).list();
     }
+    
+    public List<Product> getAllByCategory(int limit, Category category) {
+        return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.category = :category")
+                .setParameter("category", category)
+                .setMaxResults(limit).list();
+    }
+
 
     @Transactional(readOnly=true)
     @Override
@@ -73,6 +81,11 @@ public class ProductService extends BaseService<Product>  {
     public Product getById(Long id) {
         return (Product) sessionFactory.getCurrentSession().createQuery("from Product where id = :id")
                          .setParameter("id", id).uniqueResult();
+    }
+    
+    public Product getByCode(String code) {
+        return (Product) sessionFactory.getCurrentSession().createQuery("from Product where code = :code")
+                         .setParameter("code", code).uniqueResult();
     }
 
 }

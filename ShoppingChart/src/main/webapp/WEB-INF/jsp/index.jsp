@@ -123,7 +123,7 @@
                               <c:forEach var="product" items="${latestProducts}">
                                   <li class="span3">
                                     <div class="thumbnail">
-                                        <a  href="product_details.html">
+                                        <a  href="${pageContext.request.contextPath}/product/${product.code}">
                                             <div class="images">
                                                 <img src="data:image/jpeg;base64,${product.getEncodedImageString()}" width="160" height="160" alt=""/> 
                                             </div>
@@ -134,7 +134,7 @@
                                                   ${product.description}
                                             </p>
 
-                                            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rp.${product.price}</a></h4>
+                                            <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rp.${product.price}</a></h4>
                                           </div>
                                     </div>
                                   </li>
