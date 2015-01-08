@@ -61,13 +61,7 @@ public class AdminProductController {
         modelMap.addAttribute("productActive", "active");
         modelMap.addAttribute("product", productService.getById(uuid));
         modelMap.addAttribute("listCategories", categoryService.getAll());
-        byte[] encoded=org.apache.commons.codec.binary.Base64
-            .encodeBase64(productService.getById(uuid).getImage());
-        String encodedString = new String(encoded);
-        modelMap.addAttribute("image", encodedString);
-        
-        httpServletResponse.setContentType("image/gif");
-        
+
         return "admin/EditProduct";
     }
     

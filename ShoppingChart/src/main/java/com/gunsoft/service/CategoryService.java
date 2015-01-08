@@ -5,8 +5,10 @@
  */
 package com.gunsoft.service;
 
+import com.gunsoft.bean.AmountCategory;
 import com.gunsoft.bean.Category;
 import java.util.List;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +48,14 @@ public class CategoryService extends BaseService<Category> {
     @Override
     public List<Category> getAll() {
         return (List<Category>) sessionFactory.getCurrentSession().createQuery("from Category").list();
+    }
+    
+    public List<AmountCategory> getCategoryCount(int limit) {
+        return (List<AmountCategory>) sessionFactory.getCurrentSession().createQuery("select c.title as title, COUNT(c.title) as count from Product p join p.category c group by c.title")
+                .setMaxResults(limit)
+                .setResultTransformer(
+                        Transformers.aliasToBean(AmountCategory.class))
+                .list();
     }
 
     @Transactional(readOnly=true)

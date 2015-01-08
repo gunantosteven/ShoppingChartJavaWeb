@@ -78,7 +78,7 @@
                                             <p class="help-block">Product Code</p>
                                             
                                             <label>Image</label><br>    
-                                            <img src="data:image/jpeg;base64,${image}" width="200" height="200"> 
+                                            <img src="data:image/jpeg;base64,${product.getEncodedImageString()}" width="200" height="200"> 
                                             <input name="img" type="file" value="${product.image}">
                                             <p class="help-block">Image Product</p>
                                             

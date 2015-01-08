@@ -59,6 +59,13 @@ public class Product implements java.io.Serializable {
         this.image = image;
     }
 
+    public String getEncodedImageString() {
+        byte[] encoded=org.apache.commons.codec.binary.Base64
+            .encodeBase64(image);
+        String encodedImageString = new String(encoded);
+        return encodedImageString;
+    }
+
     public byte[] getImage() {
         return image;
     }

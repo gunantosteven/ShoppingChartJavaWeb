@@ -57,6 +57,11 @@ public class ProductService extends BaseService<Product>  {
     public List<Product> getAll() {
         return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product").list();
     }
+    
+    public List<Product> getAll(int limit) {
+        return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product")
+                .setMaxResults(limit).list();
+    }
 
     @Transactional(readOnly=true)
     @Override
