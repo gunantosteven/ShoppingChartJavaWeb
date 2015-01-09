@@ -95,21 +95,15 @@
                         </c:forEach>
 		</ul>
 		<br/>
-                <h4>Best Seller </h4>
-		  <div class="thumbnail">
-			<img src="${pageContext.request.contextPath}/themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
+		  <c:forEach var="product" items="${latestProducts}" begin="0" end="1" step="1">
+                    <div class="thumbnail">
+			<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
 			<div class="caption">
-			  <h5>Panasonic</h5>
-				<h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+			  <h5>${product.title}</h5>
+				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rp.${product.price}</a></h4>
 			</div>
-		  </div><br/>
-			<div class="thumbnail">
-				<img src="${pageContext.request.contextPath}/themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
-				<div class="caption">
-				  <h5>Kindle</h5>
-				    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
-				</div>
-			  </div><br/>
+                    </div><br/>
+                  </c:forEach>
 			<div class="thumbnail">
 				<img src="${pageContext.request.contextPath}/themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
 				<div class="caption">
