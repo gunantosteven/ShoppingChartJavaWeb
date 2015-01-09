@@ -36,7 +36,7 @@ public class ProductsController {
         Category category = categoryService.getByTitle(title);
         modelMap.addAttribute("amountCategory", categoryService.getCategoryCount(category));
         modelMap.addAttribute("category", category);
-        modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, category));
+        modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, category, page));
         return "products";
     }
 }

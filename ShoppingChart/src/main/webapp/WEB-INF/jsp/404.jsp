@@ -120,28 +120,7 @@
 <!-- Sidebar end=============================================== -->
 		<div class="span9">		
 			
-		<h4>Latest Products </h4>
-			  <ul class="thumbnails">
-                              <c:forEach var="product" items="${latestProducts}">
-                                  <li class="span3">
-                                    <div class="thumbnail">
-                                        <a  href="${pageContext.request.contextPath}/product/${product.code}">
-                                            <div class="images">
-                                                <img src="data:image/jpeg;base64,${product.getEncodedImageString()}" width="160" height="160" alt=""/> 
-                                            </div>
-                                        </a>
-                                          <div class="caption">
-                                            <h5>${product.title}</h5>
-                                            <p> 
-                                                  ${product.description}
-                                            </p>
-
-                                            <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rp.${product.price}</a></h4>
-                                          </div>
-                                    </div>
-                                  </li>
-                              </c:forEach>
-			  </ul>	
+		<h4>Halaman tidak ditemukan </h4>
 
 		</div>
 		</div>

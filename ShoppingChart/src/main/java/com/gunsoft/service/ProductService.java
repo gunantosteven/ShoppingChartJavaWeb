@@ -70,6 +70,13 @@ public class ProductService extends BaseService<Product>  {
                 .setMaxResults(limit).list();
     }
     
+    public List<Product> getAllByCategory(int limit, Category category, int page) {
+        return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.category = :category")
+                .setParameter("category", category)
+                .setFirstResult(limit * page - limit)
+                .setMaxResults(limit).list();
+    }
+    
     public List<Product> getAllByCategory(Category category) {
         return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.category = :category")
                 .setParameter("category", category).list();
