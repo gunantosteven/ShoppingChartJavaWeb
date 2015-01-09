@@ -57,12 +57,26 @@ public class CategoryService extends BaseService<Category> {
                         Transformers.aliasToBean(AmountCategory.class))
                 .list();
     }
+    
+    public AmountCategory getCategoryCount(Category category) {
+        return (AmountCategory) sessionFactory.getCurrentSession().createQuery("select c.title as title, COUNT(c.title) as count from Product p join p.category c where p.category = :category group by c.title")
+                .setParameter("category", category)
+                .setMaxResults(1)
+                .setResultTransformer(
+                        Transformers.aliasToBean(AmountCategory.class))
+                .uniqueResult();
+    }
 
     @Transactional(readOnly=true)
     @Override
     public Category getById(String id) {
         return (Category) sessionFactory.getCurrentSession().createQuery("from Category where id = :id")
                          .setParameter("id", id).uniqueResult();
+    }
+    
+    public Category getByTitle(String title) {
+        return (Category) sessionFactory.getCurrentSession().createQuery("from Category where title = :title")
+                         .setParameter("title", title).uniqueResult();
     }
 
     @Override

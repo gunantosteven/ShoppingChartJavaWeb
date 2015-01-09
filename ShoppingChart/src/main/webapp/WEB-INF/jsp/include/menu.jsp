@@ -29,7 +29,7 @@
 	<span class="icon-bar"></span>
 </a>
   <div class="navbar-inner">
-    <a class="brand" href="index.html"><img src="${pageContext.request.contextPath}/themes/images/logo.png" alt="Bootsshop"/></a>
+    <a class="brand" href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/themes/images/logo.png" alt="Bootsshop"/></a>
 		<form class="form-inline navbar-search" method="post" action="products.html" >
 		<input id="srchFld" class="srchTxt" type="text" />
 		  <select class="srchTxt">

@@ -69,6 +69,11 @@ public class ProductService extends BaseService<Product>  {
                 .setParameter("category", category)
                 .setMaxResults(limit).list();
     }
+    
+    public List<Product> getAllByCategory(Category category) {
+        return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.category = :category")
+                .setParameter("category", category).list();
+    }
 
 
     @Transactional(readOnly=true)

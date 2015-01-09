@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
@@ -11,6 +10,7 @@
         vertical-align:top
     }
 </style>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <jsp:include page="include/header.jsp" />
@@ -25,12 +25,12 @@
 	<div id="sidebar" class="span3">
 		<div class="well well-small"><a id="myCart" href="product_summary.html"><img src="${pageContext.request.contextPath}/themes/images/ico-cart.png" alt="cart">3 Items in your cart  <span class="badge badge-warning pull-right">$155.00</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
-			 <c:forEach var="amountCategory" items="${amountCategories}">
+			<c:forEach var="amountCategory" items="${amountCategories}">
                             <li><a href="${pageContext.request.contextPath}/products/${amountCategory.title}?page=1">${amountCategory.title.toUpperCase()} [${amountCategory.count}]</a></li>
                         </c:forEach>
 		</ul>
-		<br/>
                 <h4>Best Seller </h4>
+		<br/>
 		  <div class="thumbnail">
 			<img src="${pageContext.request.contextPath}/themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
 			<div class="caption">
@@ -55,89 +55,35 @@
 <!-- Sidebar end=============================================== -->
 	<div class="span9">
     <ul class="breadcrumb">
-    <li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
-    <li><a href="${pageContext.request.contextPath}/products/${product.category.title}">${product.category.title.toUpperCase()} Products</a> <span class="divider">/</span></li>
-    <li class="active">${product.title} Details</li>
-    </ul>	
-	<div class="row">	  
-			<div id="gallery" class="span3">
-            <a href="data:image/jpeg;base64,${product.getEncodedImageString()}" title="Fujifilm FinePix S2950 Digital Camera">
-				<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" style="width:100%" alt="Fujifilm FinePix S2950 Digital Camera"/>
-            </a>
-			<div id="differentview" class="moreOptopm carousel slide">
-                <div class="carousel-inner">
-                  <div class="item active">
-                   <a href="data:image/jpeg;base64,${product.getEncodedImageString()}"> <img style="width:29%" src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/></a>
-                  </div>
-                  <div class="item">
-                   <a href="data:image/jpeg;base64,${product.getEncodedImageString()}" > <img style="width:29%" src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/></a>
-                  </div>
-                </div>
-              <!--  
-			  <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-              <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a> 
-			  -->
-              </div>
-			  
-			 <div class="btn-toolbar">
-			  <div class="btn-group">
-				<span class="btn"><i class="icon-envelope"></i></span>
-				<span class="btn" ><i class="icon-print"></i></span>
-				<span class="btn" ><i class="icon-zoom-in"></i></span>
-				<span class="btn" ><i class="icon-star"></i></span>
-				<span class="btn" ><i class=" icon-thumbs-up"></i></span>
-				<span class="btn" ><i class="icon-thumbs-down"></i></span>
-			  </div>
-			</div>
-			</div>
-			<div class="span6">
-				<h3>${product.title}  </h3>
-				<small>- ${product.description}</small>
-				<hr class="soft"/>
-				<form class="form-horizontal qtyFrm">
-				  <div class="control-group">
-					<label class="control-label"><span>Rp.${product.price}</span></label>
-					<div class="controls">
-					<input type="number" class="span1" placeholder="Qty."/>
-					  <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></button>
-					</div>
-				  </div>
-				</form>
-				
-				<hr class="soft"/>
-				<h4>Stock Masih Ada</h4>
-				
-				<hr class="soft clr"/>
-				<p>
-				${product.descriptionFull}
-				
-				</p>
-				<a class="btn btn-small pull-right" href="#detail">More Details</a>
-				<br class="clr"/>
-			<a href="#" name="detail"></a>
-			<hr class="soft"/>
-			</div>
-			
-			<div class="span9">
-            <ul id="productDetail" class="nav nav-tabs">
-              <li class="active"><a href="#home" data-toggle="tab">${product.title} Details</a></li>
-              <li><a href="#profile" data-toggle="tab">Related Products</a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-              <div class="tab-pane fade active in" id="home">
-			  <h4>Product Information</h4>
-                
-              </div>
-		<div class="tab-pane fade" id="profile">
-		<div id="myTab" class="pull-right">
-		 <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
-		 <a href="#blockView" data-toggle="tab"><span class="btn btn-large btn-primary"><i class="icon-th-large"></i></span></a>
+		<li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
+		<li class="active">${amountCategory.title.toUpperCase()} Products</li>
+    </ul>
+	<h3> ${amountCategory.title.toUpperCase()} Products <small class="pull-right"> ${amountCategory.count} products are available </small></h3>	
+	<hr class="soft"/>
+	<p>
+		 ${category.description}
+	</p>
+	<hr class="soft"/>
+	<form class="form-horizontal span6">
+		<div class="control-group">
+		  <label class="control-label alignL">Sort By </label>
+			<select>
+              <option>Product name A - Z</option>
+              <option>Prioduct name Z - A</option>
+              <option>Product Stoke</option>
+              <option>Price Lowest first</option>
+            </select>
 		</div>
-		<br class="clr"/>
-		<hr class="soft"/>
-		<div class="tab-content">
-			<div class="tab-pane" id="listView">
-                            <c:forEach var="product" items="${productsByCategory}">
+	  </form>
+	  
+<div id="myTab" class="pull-right">
+ <a href="#listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
+ <a href="#blockView" data-toggle="tab"><span class="btn btn-large btn-primary"><i class="icon-th-large"></i></span></a>
+</div>
+<br class="clr"/>
+<div class="tab-content">
+	<div class="tab-pane" id="listView">
+		<c:forEach var="product" items="${productsByCategory}">
 				<div class="row">	  
 					<div class="span2">
                                             <div class="images">
@@ -169,14 +115,12 @@
 					</div>
                                 <hr class="soft"/>  
                                 </div> 
-                            </c:forEach>            
-			
-			
-			
-		</div>
-			<div class="tab-pane active" id="blockView">
-				<ul class="thumbnails">
-                                    <c:forEach var="product" items="${productsByCategory}">
+                </c:forEach>        
+	</div>
+
+	<div class="tab-pane  active" id="blockView">
+		<ul class="thumbnails">
+			<c:forEach var="product" items="${productsByCategory}">
 					<li class="span3">
 					  <div class="thumbnail">
                                               <a href="${pageContext.request.contextPath}/product/${product.code}"><div class="images"><img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/></div></a>
@@ -189,22 +133,29 @@
 						</div>
 					  </div>
 					</li>
-                                    </c:forEach>    
-				  </ul>
-			<hr class="soft"/>
-			</div>
-		</div>
-				<br class="clr">
-					 </div>
-		</div>
-          </div>
-
+                        </c:forEach> 
+		  </ul>
+	<hr class="soft"/>
 	</div>
 </div>
-</div> </div>
+
+	<a href="compair.html" class="btn btn-large pull-right">Compair Product</a>
+	<div class="pagination">
+			<ul>
+			<li><a href="#">&lsaquo;</a></li>
+                        <c:forEach var="i" begin="1" end="${amountCategory.count/6 == 1 ? amountCategory.count/6 : amountCategory.count/6+1}">
+                            <li><a href="${pageContext.request.contextPath}/products/${amountCategory.title}?page=${i}">${i}</a></li>
+                        </c:forEach>
+			<li><a href="#">&rsaquo;</a></li>
+			</ul>
+			</div>
+			<br class="clr"/>
+</div>
+</div>
+</div>
 </div>
 <!-- MainBody End ============================= -->
-    <jsp:include page="include/footer.jsp" />
+<jsp:include page="include/footer.jsp" />
 <span id="themesBtn"></span>
 </body>
 </html>
