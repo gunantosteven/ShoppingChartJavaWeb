@@ -40,7 +40,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="${pageContext.request.contextPath}/admin/products" method="POST" enctype="multipart/form-data">
+                                    <form role="form" action="${pageContext.request.contextPath}/admin/products?${_csrf.parameterName}=${_csrf.token} " method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Title</label>
                                             <input name="title" class="form-control" placeholder="Enter text">
@@ -74,6 +74,11 @@
                                             <input name="price" class="form-control" placeholder="Enter text" type="number">
                                             <p class="help-block">Product Price</p>
                                         </div>
+                                        
+                                        <!-- spring security needed -->
+                                        <input type="hidden" name="${_csrf.parameterName}"
+                                        value="${_csrf.token}" />
+                                        
                                         <button type="submit" class="btn btn-default">Submit Button</button>
                                     </form>    
                                 </div>

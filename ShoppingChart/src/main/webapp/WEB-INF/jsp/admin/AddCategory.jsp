@@ -48,6 +48,11 @@
                                             <input name="description" class="form-control" placeholder="Enter text">
                                             <p class="help-block">Description Category</p>
                                         </div>
+                                        
+                                        <!-- spring security needed -->
+                                        <input type="hidden" name="${_csrf.parameterName}"
+                                        value="${_csrf.token}" />
+                                        
                                         <button type="submit" class="btn btn-default">Submit Button</button>
                                     </form>    
                                 </div>

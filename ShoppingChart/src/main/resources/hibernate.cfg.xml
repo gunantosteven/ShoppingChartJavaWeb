@@ -10,5 +10,7 @@
     <mapping class="com.gunsoft.bean.ItemCategory"/>
     <mapping class="com.gunsoft.bean.Order"/>
     <mapping class="com.gunsoft.bean.OrderDetail"/>
+    <mapping class="com.gunsoft.bean.User"/>
+    <mapping class="com.gunsoft.bean.UserRole"/>
   </session-factory>
 </hibernate-configuration>

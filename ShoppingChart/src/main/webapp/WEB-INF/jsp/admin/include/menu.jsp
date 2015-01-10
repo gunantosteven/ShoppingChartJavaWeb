@@ -218,7 +218,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="javascript:formSubmit()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -264,3 +264,13 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+                                
+        <form action="${pageContext.request.contextPath}/j_spring_security_logout" method="post" id="logoutForm">
+            <input type="hidden" name="${_csrf.parameterName}"
+                    value="${_csrf.token}" />
+        </form>
+        <script>
+                function formSubmit() {
+                        document.getElementById("logoutForm").submit();
+                }
+        </script>                          

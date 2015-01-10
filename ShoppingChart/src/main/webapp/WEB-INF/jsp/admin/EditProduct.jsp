@@ -40,7 +40,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="${pageContext.request.contextPath}/admin/products" method="POST" enctype="multipart/form-data">
+                                    <form role="form" action="${pageContext.request.contextPath}/admin/products?${_csrf.parameterName}=${_csrf.token}" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>UUID</label>
                                             <input value="${product.uuid}" name="uuid" class="form-control" readonly="readonly">
@@ -85,7 +85,8 @@
                                             <label>Price</label>
                                             <input value="${product.price}" name="price" class="form-control" placeholder="Enter text" type="number">
                                             <p class="help-block">Product Price</p>
-                                        </div>
+                                        </div>                          
+                                            
                                         <button type="submit" class="btn btn-default">Edit</button>
                                     </form>    
                                 </div>
