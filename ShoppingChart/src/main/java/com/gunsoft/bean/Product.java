@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,6 +45,8 @@ public class Product implements java.io.Serializable {
     private Category category;
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
+    @Column(updatable = false)
+    private Date createDate;
 
     public Product() {
     }
@@ -128,5 +131,13 @@ public class Product implements java.io.Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

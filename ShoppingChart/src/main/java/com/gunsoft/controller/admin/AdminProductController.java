@@ -9,6 +9,7 @@ import com.gunsoft.bean.Category;
 import com.gunsoft.bean.Product;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.ProductService;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
@@ -83,8 +84,11 @@ public class AdminProductController {
                 product.setImage(productService.getById(product.getUuid()).getImage());
             else
                 product.setImage(img.getBytes());
+            
             Category category = categoryService.getById(categoryUuid);
             product.setCategory(category);
+            
+            product.setCreateDate(new Date());
             
             productService.saveOrUpdate(product);
         } catch (Exception e) {
