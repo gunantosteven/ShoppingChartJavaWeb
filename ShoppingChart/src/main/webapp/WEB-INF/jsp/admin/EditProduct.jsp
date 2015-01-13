@@ -40,7 +40,13 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="${pageContext.request.contextPath}/admin/products?${_csrf.parameterName}=${_csrf.token}" method="POST" enctype="multipart/form-data">
+                                    <c:if test="${error != null}">
+                                        <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                            <strong>Warning !</strong> ${error}
+                                        </div>
+                                    </c:if> 
+                                    <form role="form" action="${pageContext.request.contextPath}/admin/products/detail/${product.uuid}?${_csrf.parameterName}=${_csrf.token}" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>UUID</label>
                                             <input value="${product.uuid}" name="uuid" class="form-control" readonly="readonly">

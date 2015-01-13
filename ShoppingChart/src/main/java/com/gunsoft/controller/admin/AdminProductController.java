@@ -56,6 +56,32 @@ public class AdminProductController {
         return "admin/AddProduct";
     }
     
+    @RequestMapping(value ="/addproduct", method = RequestMethod.POST)
+    public String addProduct(ModelMap modelMap, @ModelAttribute Product product,
+            @RequestParam(value = "categoryUuid", required = false) String categoryUuid
+            , @RequestParam(value = "img", required = false) MultipartFile img) {
+        try {
+            if(productService.getByCode(product.getCode()) == null)
+            {
+                product.setImage(img.getBytes());
+                Category category = categoryService.getById(categoryUuid);
+                product.setCategory(category);
+
+                product.setCreateDate(new Date());
+                
+                productService.saveOrUpdate(product);
+            }
+            else
+            {
+                modelMap.addAttribute("error", "Code sudah ada");
+                return "admin/AddProduct"; 
+            }
+        } catch (Exception e) {
+            logger.error(e, e);
+        }
+        return "redirect:/admin/products";
+    }
+    
     @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.GET)
     public String pageEdit(ModelMap modelMap, @PathVariable String uuid) {
         modelMap.addAttribute("masterActive", "active");
@@ -66,34 +92,42 @@ public class AdminProductController {
         return "admin/EditProduct";
     }
     
+    @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.POST)
+    public String editProduct(ModelMap modelMap, @ModelAttribute Product product,
+            @RequestParam(value = "categoryUuid", required = false) String categoryUuid
+            , @RequestParam(value = "img", required = false) MultipartFile img, @PathVariable String uuid) {
+        try {
+            if(productService.getById(uuid).getCode().equals(product.getCode()) || productService.getByCode(product.getCode()) == null)
+            {
+                if(img.getBytes().length > 1)
+                    product.setImage(img.getBytes());
+                else if(product.getUuid() != null)
+                    product.setImage(productService.getById(product.getUuid()).getImage());
+                else
+                    product.setImage(img.getBytes());
+
+                Category category = categoryService.getById(categoryUuid);
+                product.setCategory(category);
+
+                product.setCreateDate(new Date());
+                
+                productService.saveOrUpdate(product);
+            }
+            else
+            {
+                modelMap.addAttribute("error", "Code sudah ada");
+                return "admin/EditProduct"; 
+            }
+        } catch (Exception e) {
+            logger.error(e, e);
+        }
+        return "redirect:/admin/products";
+    }
+    
     @RequestMapping(value ="/delete/{uuid}", method = RequestMethod.GET)
     public String delete(@PathVariable String uuid, @ModelAttribute Product product) throws Exception {
         product.setUuid(uuid);
         productService.delete(product);
-        return "redirect:/admin/products";
-    }
-    
-    @RequestMapping(method = RequestMethod.POST)
-    public String save(ModelMap modelMap, @ModelAttribute Product product,
-            @RequestParam(value = "categoryUuid", required = false) String categoryUuid
-            , @RequestParam(value = "img", required = false) MultipartFile img) {
-        try {
-            if(img.getBytes().length > 1)
-                product.setImage(img.getBytes());
-            else if(product.getUuid() != null)
-                product.setImage(productService.getById(product.getUuid()).getImage());
-            else
-                product.setImage(img.getBytes());
-            
-            Category category = categoryService.getById(categoryUuid);
-            product.setCategory(category);
-            
-            product.setCreateDate(new Date());
-            
-            productService.saveOrUpdate(product);
-        } catch (Exception e) {
-            logger.error(e, e);
-        }
         return "redirect:/admin/products";
     }
 }

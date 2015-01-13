@@ -74,11 +74,12 @@ public class CategoryService extends BaseService<Category> {
                          .setParameter("id", id).uniqueResult();
     }
     
+    @Transactional(readOnly=true)
     public Category getByTitle(String title) {
         return (Category) sessionFactory.getCurrentSession().createQuery("from Category where title = :title")
                          .setParameter("title", title).uniqueResult();
     }
-
+    
     @Override
     public List select(int start, int end, String orderby, String search) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

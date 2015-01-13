@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -140,4 +141,29 @@ public class Product implements java.io.Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+    
+    public String getRupiahFormat() {
+            String nominal = String.valueOf(price);
+	    String rupiah = "";
+	 
+	    if (nominal.length() == 0) {
+	        rupiah = "0,00";
+	    } else {
+	        if (nominal.length() > 3) {
+	            int length = nominal.length();
+	               
+	            for (int i = length; i > 0; i -= 3) {
+	                if (i > 3) {
+	                    nominal = nominal.substring(0, i - 3) + "." + 
+	                    nominal.substring(i - 3);
+	                    rupiah = nominal;
+	                }
+	            }
+	        } else {
+	            rupiah = nominal;
+	        }
+	    }
+	         
+	    return "Rp." + rupiah;
+	}
 }

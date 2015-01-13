@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,7 +40,13 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="${pageContext.request.contextPath}/admin/categories" method="POST">
+                                    <c:if test="${error != null}">
+                                        <div class="alert alert-warning">
+                                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                            <strong>Warning !</strong> ${error}
+                                        </div>
+                                    </c:if> 
+                                    <form role="form" action="${pageContext.request.contextPath}/admin/categories/detail/${category.uuid}" method="POST">
                                         <div class="form-group">
                                             <label>UUID</label>
                                             <input value="${category.uuid}" name="uuid" class="form-control" readonly="readonly">

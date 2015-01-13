@@ -45,6 +45,22 @@ public class AdminCategoryController {
         return "admin/AddCategory";
     }
     
+    @RequestMapping(value ="/addcategory", method = RequestMethod.POST)
+    public String addCategory(ModelMap modelMap ,@ModelAttribute Category category) {
+        try {
+            if(categoryService.getByTitle(category.getTitle()) == null)
+                categoryService.saveOrUpdate(category);
+            else
+            {
+                modelMap.addAttribute("error", "Title sudah ada");
+                return "admin/AddCategory"; 
+            }
+        } catch (Exception e) {
+            logger.error(e, e);
+        }
+        return "redirect:/admin/categories";
+    }
+    
     @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.GET)
     public String pageEdit(ModelMap modelMap, @PathVariable String uuid) {
         modelMap.addAttribute("masterActive", "active");
@@ -53,20 +69,26 @@ public class AdminCategoryController {
         return "admin/EditCategory";
     }
     
+    @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.POST)
+    public String editCategory(@PathVariable String uuid, ModelMap modelMap, @ModelAttribute Category category) {
+        try {
+            if(categoryService.getById(uuid).getTitle().equals(category.getTitle()) || categoryService.getByTitle(category.getTitle()) == null)
+                categoryService.saveOrUpdate(category);
+            else
+            {
+                modelMap.addAttribute("error", "Title sudah ada");
+                return "admin/EditCategory"; 
+            }
+        } catch (Exception e) {
+            logger.error(e, e);
+        }
+        return "redirect:/admin/categories";
+    }
+    
     @RequestMapping(value ="/delete/{uuid}", method = RequestMethod.GET)
     public String delete(@PathVariable String uuid, @ModelAttribute Category category) throws Exception {
         category.setUuid(uuid);
         categoryService.delete(category);
-        return "redirect:/admin/categories";
-    }
-    
-    @RequestMapping(method = RequestMethod.POST)
-    public String save(ModelMap modelMap, @ModelAttribute Category category) {
-        try {
-            categoryService.saveOrUpdate(category);
-        } catch (Exception e) {
-            logger.error(e, e);
-        }
         return "redirect:/admin/categories";
     }
 }
