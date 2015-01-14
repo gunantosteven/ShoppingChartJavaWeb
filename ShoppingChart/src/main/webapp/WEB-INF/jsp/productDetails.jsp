@@ -37,7 +37,7 @@
 			<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
 			<div class="caption">
 			  <h5>${product.title}</h5>
-				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
+				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
 			</div>
                     </div><br/>
                 </c:forEach>
@@ -52,7 +52,7 @@
 	<div class="span9">
     <ul class="breadcrumb">
     <li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
-    <li><a href="${pageContext.request.contextPath}/products/${product.category.title}">${product.category.title.toUpperCase()} Products</a> <span class="divider">/</span></li>
+    <li><a href="${pageContext.request.contextPath}/products/${product.category.title}?page=1">${product.category.title.toUpperCase()} Products</a> <span class="divider">/</span></li>
     <li class="active">${product.title} Details</li>
     </ul>	
 	<div class="row">	  
@@ -90,12 +90,12 @@
 				<h3>${product.title}  </h3>
 				<small>- ${product.description}</small>
 				<hr class="soft"/>
-				<form class="form-horizontal qtyFrm">
+                                <form class="form-horizontal qtyFrm" action="${pageContext.request.contextPath}/contact" method="GET">
 				  <div class="control-group">
 					<label class="control-label"><span>${product.getRupiahFormat()}</span></label>
 					<div class="controls">
 					<input type="number" class="span1" placeholder="Qty."/>
-					  <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></button>
+					  <button type="submit" class="btn btn-large btn-primary pull-right" > Add to cart <i class=" icon-shopping-cart"></i></button>
 					</div>
 				  </div>
 				</form>
@@ -153,12 +153,12 @@
 					</div>
 					<div class="span3 alignR">
 					<form class="form-horizontal qtyFrm">
-					<h3> Rp.${product.price}</h3>
+					<h3> ${product.getRupiahFormat()}</h3>
 					<label class="checkbox">
 						<input type="checkbox">  Adds product to compair
 					</label><br/>
 					<div class="btn-group">
-					  <a href="product_details.html" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+					  <a href="${pageContext.request.contextPath}/contact" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
 					  <a href="product_details.html" class="btn btn-large"><i class="icon-zoom-in"></i></a>
 					 </div>
 						</form>
@@ -181,7 +181,7 @@
 						  <p> 
 							${product.description}
 						  </p>
-						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">Rp.${product.price}</a></h4>
+						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
 						</div>
 					  </div>
 					</li>
