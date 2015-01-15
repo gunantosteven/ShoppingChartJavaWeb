@@ -44,7 +44,6 @@
                 </c:forEach>
 			<div class="thumbnail">
 				<img src="${pageContext.request.contextPath}/themes/images/bca.gif" title="BCA" alt="BCA">
-				<img src="${pageContext.request.contextPath}/themes/images/mandiri.gif" title="BCA" alt="BCA">
 				<div class="caption">
 				  <h5>Payment Methods</h5>
 				</div>
