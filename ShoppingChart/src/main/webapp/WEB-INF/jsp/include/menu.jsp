@@ -38,8 +38,7 @@
     </form>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="${pageContext.request.contextPath}/">Specials Offer</a></li>
-	 <li class=""><a href="${pageContext.request.contextPath}/">Delivery</a></li>
-	 <li class=""><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
+	 <li class=""><a href="${pageContext.request.contextPath}/contact">Cara Pembeliaan</a></li>
 	 <li class="">
 	 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >

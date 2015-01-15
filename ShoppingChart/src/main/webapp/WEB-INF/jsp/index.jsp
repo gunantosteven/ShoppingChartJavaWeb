@@ -95,6 +95,7 @@
                         </c:forEach>
 		</ul>
 		<br/>
+                  <h4>Recommended</h4>
 		  <c:forEach var="product" items="${latestProducts}" begin="0" end="1" step="1">
                     <div class="thumbnail">
 			<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
@@ -105,8 +106,9 @@
                     </div><br/>
                   </c:forEach>
 			<div class="thumbnail">
-				<img src="${pageContext.request.contextPath}/themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
-				<div class="caption">
+				<img src="${pageContext.request.contextPath}/themes/images/bca.gif" title="BCA" alt="BCA">
+				<img src="${pageContext.request.contextPath}/themes/images/mandiri.gif" title="BCA" alt="BCA">
+                                <div class="caption">
 				  <h5>Payment Methods</h5>
 				</div>
 			  </div>

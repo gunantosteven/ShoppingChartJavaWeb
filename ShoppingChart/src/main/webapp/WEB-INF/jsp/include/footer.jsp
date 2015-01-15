@@ -41,7 +41,7 @@
 				<a href="#"><img width="60" height="60" src="${pageContext.request.contextPath}/themes/images/youtube.png" title="youtube" alt="youtube"/></a>
 			 </div> 
 		 </div>
-		<p class="pull-right">&copy; Bootshop</p>
+		<p class="pull-right">&copy; Hosanna</p>
 	</div><!-- Container End -->
 	</div>
 
