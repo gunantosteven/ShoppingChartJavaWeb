@@ -26,16 +26,16 @@
 </a>
   <div class="navbar-inner">
     <a class="brand" href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/themes/images/logo.png" alt="Bootsshop"/></a>
-		<form class="form-inline navbar-search" method="post" action="products.html" >
-		<input id="srchFld" class="srchTxt" type="text" />
-		  <select class="srchTxt">
-                        <option>All</option>
+		<form class="form-inline navbar-search" method="get" action="${pageContext.request.contextPath}/search" >
+                    <input id="titleProduct" class="titleProduct" name="titleProduct" type="text" />
+                    <select class="srchTxt" name="codeCategory">
+                      <option value="all">All</option>
                       <c:forEach var="category" items="${amountCategories}">
-                          <option>${category.title.toUpperCase()} </option>
+                          <option value="${category.code}" >${category.title.toUpperCase()} </option>
                       </c:forEach>
-		</select> 
+                  </select> 
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
-    </form>
+                </form>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="${pageContext.request.contextPath}/">Specials Offer</a></li>
 	 <li class=""><a href="${pageContext.request.contextPath}/contact">Cara Pembeliaan</a></li>

@@ -66,6 +66,13 @@ public class ProductService extends BaseService<Product>  {
     }
     
     @Transactional(readOnly=true)
+    public List<Product> getAllByTitleProduct(int limit, String titleProduct) {
+        return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.code like :code")
+                .setParameter("code", titleProduct)
+                .setMaxResults(limit).list();
+    }
+    
+    @Transactional(readOnly=true)
     public List<Product> getAllByCategory(int limit, Category category) {
         return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.category = :category")
                 .setParameter("category", category)
@@ -85,7 +92,14 @@ public class ProductService extends BaseService<Product>  {
         return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.category = :category")
                 .setParameter("category", category).list();
     }
-
+    
+    @Transactional(readOnly=true)
+    public List<Product> getAllByCategoryAndTitleProduct(String title, Category category, int limit) {
+        return (List<Product>) sessionFactory.getCurrentSession().createQuery("from Product p where p.category = :category and p.title like :title")
+                .setParameter("category", category)
+                .setParameter("title", title)
+                .setMaxResults(limit).list();
+    }
 
     @Transactional(readOnly=true)
     @Override

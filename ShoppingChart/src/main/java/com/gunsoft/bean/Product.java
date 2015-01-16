@@ -20,12 +20,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Store;
 
 /**
  *
  * @author gunanto
  */
 @Entity
+@Indexed
 @Table(name="T_PRODUCT")
 public class Product implements java.io.Serializable {
     
@@ -34,18 +41,27 @@ public class Product implements java.io.Serializable {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "uuid", unique = true)
     private String uuid;
+    
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String title;
+    
     private String description;
+    
     private String descriptionFull;
+    
     @Column(unique = true)
     private String code;
+    
     private Long price;
-    @OneToMany(mappedBy="product",cascade=CascadeType.ALL)
+    
+    @IndexedEmbedded
     @ManyToOne
-    @JoinColumn(name="PRODUCT_ID")
+    @JoinColumn(name="CATEGORY_ID")
     private Category category;
+    
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
+    
     @Column(updatable = false)
     private Date createDate;
 
