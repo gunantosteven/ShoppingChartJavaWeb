@@ -51,7 +51,7 @@ public class CategoryService extends BaseService<Category> {
     }
     
     public List<AmountCategory> getCategoryCount(int limit) {
-        return (List<AmountCategory>) sessionFactory.getCurrentSession().createQuery("select c.title as title, COUNT(c.title) as count from Product p join p.category c group by c.title")
+        return (List<AmountCategory>) sessionFactory.getCurrentSession().createQuery("select c.code as code, c.title as title, COUNT(c.title) as count from Product p join p.category c group by c.title")
                 .setMaxResults(limit)
                 .setResultTransformer(
                         Transformers.aliasToBean(AmountCategory.class))
@@ -59,7 +59,7 @@ public class CategoryService extends BaseService<Category> {
     }
     
     public AmountCategory getCategoryCount(Category category) {
-        return (AmountCategory) sessionFactory.getCurrentSession().createQuery("select c.title as title, COUNT(c.title) as count from Product p join p.category c where p.category = :category group by c.title")
+        return (AmountCategory) sessionFactory.getCurrentSession().createQuery("select c.code as code, c.title as title, COUNT(c.title) as count from Product p join p.category c where p.category = :category group by c.title")
                 .setParameter("category", category)
                 .setMaxResults(1)
                 .setResultTransformer(
@@ -78,6 +78,12 @@ public class CategoryService extends BaseService<Category> {
     public Category getByTitle(String title) {
         return (Category) sessionFactory.getCurrentSession().createQuery("from Category where title = :title")
                          .setParameter("title", title).uniqueResult();
+    }
+    
+    @Transactional(readOnly=true)
+    public Category getByCode(String code) {
+        return (Category) sessionFactory.getCurrentSession().createQuery("from Category where code = :code")
+                         .setParameter("code", code).uniqueResult();
     }
     
     @Override

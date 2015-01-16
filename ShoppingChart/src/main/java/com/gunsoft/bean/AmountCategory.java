@@ -11,16 +11,26 @@ package com.gunsoft.bean;
  */
 public class AmountCategory {
     private String title;
+    private String code;
     private Long count;
 
     public AmountCategory() {
     }
 
-    public AmountCategory(String title, long count) {
+    public AmountCategory(String title, String code, Long count) {
         this.title = title;
+        this.code = code;
         this.count = count;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
     public String getTitle() {
         return title;
     }

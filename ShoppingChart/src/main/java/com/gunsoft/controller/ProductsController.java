@@ -30,10 +30,10 @@ public class ProductsController {
     @Autowired
     private ProductService productService;
     
-    @RequestMapping(value ="/{title}", method = RequestMethod.GET)
-    public String index(ModelMap modelMap, @PathVariable String title, @RequestParam("page") Integer page) {
+    @RequestMapping(value ="/{code}", method = RequestMethod.GET)
+    public String index(ModelMap modelMap, @PathVariable String code, @RequestParam("page") Integer page) {
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        Category category = categoryService.getByTitle(title);
+        Category category = categoryService.getByCode(code);
         modelMap.addAttribute("amountCategory", categoryService.getCategoryCount(category));
         modelMap.addAttribute("category", category);
         modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, category, page));

@@ -47,7 +47,7 @@
                                     
                                     <thead>
                                         <tr>
-                                            <th>UUID</th>
+                                            <th>Code</th>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Action</th>
@@ -57,7 +57,7 @@
                                     <tbody>
                                         <c:forEach var="category" items="${listCategories}">
                                             <tr class="odd gradeX">
-                                                <td>${category.uuid}</td>
+                                                <td>${category.code}</td>
                                                 <td>${category.title}</td>
                                                 <td>${category.description}</td>
                                                 <td>

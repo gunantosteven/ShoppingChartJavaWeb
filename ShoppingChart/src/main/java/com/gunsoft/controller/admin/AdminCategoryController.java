@@ -48,12 +48,19 @@ public class AdminCategoryController {
     @RequestMapping(value ="/addcategory", method = RequestMethod.POST)
     public String addCategory(ModelMap modelMap ,@ModelAttribute Category category) {
         try {
-            if(categoryService.getByTitle(category.getTitle()) == null)
-                categoryService.saveOrUpdate(category);
-            else
+            if(categoryService.getByTitle(category.getTitle()) != null)
             {
                 modelMap.addAttribute("error", "Title sudah ada");
                 return "admin/AddCategory"; 
+            }
+            else if(categoryService.getByCode(category.getCode()) != null)
+            {
+                modelMap.addAttribute("error", "Code sudah ada");
+                return "admin/AddCategory"; 
+            }    
+            else
+            { 
+                categoryService.saveOrUpdate(category);
             }
         } catch (Exception e) {
             logger.error(e, e);
@@ -72,12 +79,19 @@ public class AdminCategoryController {
     @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.POST)
     public String editCategory(@PathVariable String uuid, ModelMap modelMap, @ModelAttribute Category category) {
         try {
-            if(categoryService.getById(uuid).getTitle().equals(category.getTitle()) || categoryService.getByTitle(category.getTitle()) == null)
-                categoryService.saveOrUpdate(category);
-            else
+            if(categoryService.getByTitle(category.getTitle()) != null && !categoryService.getById(uuid).getTitle().equals(category.getTitle()))
             {
                 modelMap.addAttribute("error", "Title sudah ada");
                 return "admin/EditCategory"; 
+            }
+            else if(categoryService.getByCode(category.getCode()) != null && !categoryService.getById(uuid).getCode().equals(category.getCode()))  
+            {
+                modelMap.addAttribute("error", "Code sudah ada");
+                return "admin/EditCategory"; 
+            }
+            else
+            {
+                categoryService.saveOrUpdate(category);    
             }
         } catch (Exception e) {
             logger.error(e, e);

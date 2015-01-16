@@ -28,6 +28,8 @@ public class Category {
     @Column(unique = true)
     private String title;
     private String description;
+    @Column(unique = true)
+    private String code;
 
     public Category() {
     }
@@ -38,6 +40,14 @@ public class Category {
         this.description = description;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
     public String getDescription() {
         return description;
     }

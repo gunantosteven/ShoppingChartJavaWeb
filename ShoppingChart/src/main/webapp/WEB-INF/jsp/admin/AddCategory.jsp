@@ -53,6 +53,10 @@
                                             <input name="title" class="form-control" placeholder="Enter text">
                                             <p class="help-block">Filled with title category</p>
                                             
+                                            <label>Code</label>
+                                            <input name="code" class="form-control" placeholder="Enter text">
+                                            <p class="help-block">Filled with code category</p>
+                                            
                                             <label>Description</label>
                                             <input name="description" class="form-control" placeholder="Enter text">
                                             <p class="help-block">Description Category</p>
