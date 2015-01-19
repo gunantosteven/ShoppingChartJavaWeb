@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import javax.persistence.CascadeType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,7 +40,14 @@ public class UserRole{
 		this.user = user;
 		this.role = role;
 	}
- 
+
+        public UserRole(Integer userRoleId, User user, String role) {
+            this.userRoleId = userRoleId;
+            this.user = user;
+            this.role = role;
+        }
+        
+   
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "user_role_id", 
@@ -52,7 +60,7 @@ public class UserRole{
 		this.userRoleId = userRoleId;
 	}
  
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "username", nullable = false)
 	public User getUser() {
 		return this.user;

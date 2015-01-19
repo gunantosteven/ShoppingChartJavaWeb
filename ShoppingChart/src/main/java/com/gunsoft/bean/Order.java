@@ -15,7 +15,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
@@ -41,11 +44,17 @@ public class Order {
     @OneToMany(mappedBy="order",cascade=CascadeType.ALL)
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<OrderDetail> listOrderDetail;
+    @OneToOne(mappedBy="order")
+    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private AddressShipping addressShipping;
+    @ManyToOne
+    @JoinColumn(name="CUSTOMER_ID")
+    private Customer customer;
 
     public Order() {
     }
 
-    public Order(String uuid, String shippingAddress, String billingAddress, int amount, Status status, Date date, List<OrderDetail> listOrderDetail) {
+    public Order(String uuid, String shippingAddress, String billingAddress, int amount, Status status, Date date, List<OrderDetail> listOrderDetail, AddressShipping addressShipping, Customer customer) {
         this.uuid = uuid;
         this.shippingAddress = shippingAddress;
         this.billingAddress = billingAddress;
@@ -53,8 +62,26 @@ public class Order {
         this.status = status;
         this.date = date;
         this.listOrderDetail = listOrderDetail;
+        this.addressShipping = addressShipping;
+        this.customer = customer;
     }
 
+    public AddressShipping getAddressShipping() {
+        return addressShipping;
+    }
+
+    public void setAddressShipping(AddressShipping addressShipping) {
+        this.addressShipping = addressShipping;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
     public int getAmount() {
         return amount;
     }

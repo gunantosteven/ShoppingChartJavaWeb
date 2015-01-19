@@ -14,3 +14,5 @@
         <script src="${pageContext.request.contextPath}/js/plugins/dataTables/jquery.dataTables.js"></script>
         <script src="${pageContext.request.contextPath}/js/plugins/dataTables/dataTables.bootstrap.js"></script>
         
+        <!-- Bootstrap Bootstrap JavaScript -->
+        <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>

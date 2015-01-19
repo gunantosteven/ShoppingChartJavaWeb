@@ -34,3 +34,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.request.contextPath}/themes/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/themes/images/ico/apple-touch-icon-57-precomposed.png">
 	<style type="text/css" id="enject"></style>
+        
+        
+    <!-- Bootstrap Datepicker CSS -->
+    <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">

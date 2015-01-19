@@ -35,3 +35,6 @@
     
     <!-- DataTables CSS -->
     <link href="${pageContext.request.contextPath}/css/plugins/dataTables.bootstrap.css" rel="stylesheet">
+    
+    <!-- Bootstrap Datepicker CSS -->
+    <link href="${pageContext.request.contextPath}/css/datepicker.css" rel="stylesheet">

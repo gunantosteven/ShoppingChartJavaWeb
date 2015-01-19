@@ -67,23 +67,27 @@ public class MyUserDetailsService extends BaseService<com.gunsoft.bean.User> imp
 	}
 
         @Override
-        public void saveOrUpdate(Object o) throws Exception {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public  void saveOrUpdate(Object o) throws Exception
+        {
+            sessionFactory.getCurrentSession().saveOrUpdate(o);
         }
 
         @Override
-        public void save(Object o) throws Exception {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void save(Object o) throws Exception
+        {
+            sessionFactory.getCurrentSession().save(o);
         }
 
         @Override
-        public void update(Object o) throws Exception {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public  void update(Object o) throws Exception
+        {
+            sessionFactory.getCurrentSession().update(o);
         }
 
         @Override
-        public void delete(Object o) throws Exception {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void delete(Object o) throws Exception
+        {
+            sessionFactory.getCurrentSession().delete(o);
         }
 
         @Override

@@ -107,3 +107,6 @@
 	</div>
 	</div>
 </div>
+
+<!-- Bootstrap Bootstrap JavaScript -->
+<script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>                

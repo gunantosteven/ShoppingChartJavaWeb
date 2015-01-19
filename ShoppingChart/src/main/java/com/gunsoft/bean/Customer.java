@@ -5,12 +5,16 @@
  */
 package com.gunsoft.bean;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -25,29 +29,46 @@ public class Customer {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "uuid", unique = true)
     private String uuid;
-    private String name;
-    @Column(unique = true)
-    private String email;
-    private String password;
-
+    private String title;
+    private String firstName;
+    private String lastName;
+    private Date birth;
+    @ManyToOne
+    @JoinColumn(name="USER_ID")
+    private User user;
+    @OneToOne(mappedBy="customer")
+    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Address address;
+    
     public Customer() {
     }
 
-    public Customer(String uuid, String name, String email, String password) {
+    public Customer(String uuid, String title, String firstName, String lastName, Date birth, User user, Address address) {
         this.uuid = uuid;
-        this.name = name;
-        this.email = email;
-        this.password = password;
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birth = birth;
+        this.user = user;
+        this.address = address;
     }
 
-    public String getEmail() {
-        return email;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+    
     public String getUuid() {
         return uuid;
     }
@@ -56,19 +77,35 @@ public class Customer {
         this.uuid = uuid;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
