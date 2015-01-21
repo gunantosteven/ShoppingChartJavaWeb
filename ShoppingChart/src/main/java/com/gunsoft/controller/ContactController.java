@@ -27,8 +27,6 @@ public class ContactController {
     
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
-        modelMap.addAttribute("latestProducts", productService.getAll(9));
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
         return "contact";
     }
 }

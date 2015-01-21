@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div id="header">
 <div class="container">
 <div id="welcomeLine" class="row">
@@ -31,7 +32,7 @@
                     <select class="srchTxt" name="codeCategory">
                       <option value="all">All</option>
                       <c:forEach var="category" items="${amountCategories}">
-                          <option value="${category.code}" >${category.title.toUpperCase()} </option>
+                          <option value="${category.code}" >${fn:toUpperCase(category.title)} </option>
                       </c:forEach>
                   </select> 
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
