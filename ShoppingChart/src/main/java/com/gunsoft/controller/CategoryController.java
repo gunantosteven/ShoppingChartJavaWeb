@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author gunanto
  */
 @Controller
-@RequestMapping(value = "/products")
-public class ProductsController {
+@RequestMapping(value = "/category")
+public class CategoryController {
     
     @Autowired
     private CategoryService categoryService;
@@ -37,6 +37,6 @@ public class ProductsController {
         modelMap.addAttribute("amountCategory", categoryService.getCategoryCount(category));
         modelMap.addAttribute("category", category);
         modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, category, page));
-        return "products";
+        return "category";
     }
 }

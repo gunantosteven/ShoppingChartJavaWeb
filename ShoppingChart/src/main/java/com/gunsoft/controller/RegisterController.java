@@ -5,9 +5,11 @@
  */
 package com.gunsoft.controller;
 
+import com.gunsoft.bean.Address;
 import com.gunsoft.bean.Customer;
 import com.gunsoft.bean.User;
 import com.gunsoft.bean.UserRole;
+import com.gunsoft.service.AddressService;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.CustomerService;
 import com.gunsoft.service.MyUserDetailsService;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -48,6 +51,9 @@ public class RegisterController {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
     
+    @Autowired
+    private AddressService addressService;
+    
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String page(ModelMap modelMap) {
@@ -57,14 +63,25 @@ public class RegisterController {
     }
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String save(ModelMap modelMap ,@ModelAttribute Customer customer, @ModelAttribute User user) {
+    public String save(ModelMap modelMap ,@ModelAttribute Customer customer, @ModelAttribute User user, @ModelAttribute Address address
+        , @RequestParam(value = "firstNameAddress", required = false) String firstNameAddress, @RequestParam(value = "lastNameAddress", required = false) String lastNameAddress ) 
+    {
         Set<UserRole> userRole = new HashSet<UserRole>();
         userRole.add(new UserRole(user , "ROLE_USER"));
         user.setEnabled(true);
         user.setUserRole(userRole);
-            
+        
+        address.setFirstName(firstNameAddress);
+        address.setLastName(lastNameAddress);
+        address.setCustomer(customer);
+        
+        customer.setUser(user);
+        customer.setAddress(address);
+        
         try {
-            myUserDetailsService.save(user);
+            customerService.save(customer);
+//            addressService.save(address);
+//            myUserDetailsService.save(user);
         } catch (Exception ex) {
             Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
         }

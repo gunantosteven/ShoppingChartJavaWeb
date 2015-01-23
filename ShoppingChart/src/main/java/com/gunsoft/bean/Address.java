@@ -8,10 +8,13 @@ package com.gunsoft.bean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -22,15 +25,16 @@ import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name="T_ADDRESS")
 public class Address {
+    @GenericGenerator(name = "generator", strategy = "foreign", 
+    parameters = @Parameter(name = "property", value = "customer"))
     @Id
-    @Column(name="id", unique=true, nullable=false)
-    @GeneratedValue(generator="gen")
-    @GenericGenerator(name="gen", strategy="foreign", parameters={@Parameter(name="property", value="order")})
-    private long id;
+    @GeneratedValue(generator = "generator")
+    @Column(name = "CUSTOMER_ID", unique = true, nullable = false)
+    private String id;
     private String firstName;
     private String lastName;
     private String company;
-    private String address;
+    private String address1;
     private String address2;
     private String city;
     private String country;
@@ -45,12 +49,12 @@ public class Address {
     public Address() {
     }
 
-    public Address(long id, String firstName, String lastName, String company, String address, String address2, String city, String country, String zip, String additionalInformation, String homephone, String mobilephone) {
+    public Address(String id, String firstName, String lastName, String company, String address1, String address2, String city, String country, String zip, String additionalInformation, String homephone, String mobilephone, Customer customer) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
-        this.address = address;
+        this.address1 = address1;
         this.address2 = address2;
         this.city = city;
         this.country = country;
@@ -58,6 +62,23 @@ public class Address {
         this.additionalInformation = additionalInformation;
         this.homephone = homephone;
         this.mobilephone = mobilephone;
+        this.customer = customer;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getAdditionalInformation() {
@@ -68,12 +89,12 @@ public class Address {
         this.additionalInformation = additionalInformation;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddress1() {
+        return address1;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
     }
 
     public String getAddress2() {
@@ -138,14 +159,6 @@ public class Address {
 
     public void setMobilephone(String mobilephone) {
         this.mobilephone = mobilephone;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getZip() {
