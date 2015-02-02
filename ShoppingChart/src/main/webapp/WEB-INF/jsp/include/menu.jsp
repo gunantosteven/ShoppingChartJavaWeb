@@ -11,7 +11,16 @@
 <div id="header">
 <div class="container">
 <div id="welcomeLine" class="row">
-	<div class="span6">Welcome!<strong> User</strong></div>
+    <div class="span6">Welcome! 
+        <c:choose>
+        <c:when test="${name != 'anonymousUser'}">
+            <strong>${name}</strong> <a href="javascript:formSubmit()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+        </c:when>
+        <c:otherwise>
+            <strong>User</strong> 
+        </c:otherwise>
+        </c:choose>
+    </div>
 	<div class="span6">
 	<div class="pull-right">
 		<a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 0 ] Items in your cart </span> </a> 
@@ -41,28 +50,44 @@
 	 <li class=""><a href="${pageContext.request.contextPath}/">Specials Offer</a></li>
 	 <li class=""><a href="${pageContext.request.contextPath}/contact">Cara Pembeliaan</a></li>
 	 <li class="">
-	 <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+        <c:choose>
+        <c:when test="${name == 'anonymousUser'}">
+            <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+        </c:when>
+        <c:otherwise>
+            <a href="javascript:formSubmit()" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Logout</span></a>
+        </c:otherwise>
+        </c:choose>
+	 
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3>Login Block</h3>
 		  </div>
 		  <div class="modal-body">
-			<form class="form-horizontal loginFrm">
-			  <div class="control-group">								
-				<input type="text" id="inputEmail" placeholder="Email">
+			<form class="form-horizontal loginFrm" method="POST" action="${pageContext.request.contextPath}/j_spring_security_check" >	
+                            
+                          <div class="control-group">								
+				<input type="text" name="username" id="inputEmail" placeholder="Email">
 			  </div>
 			  <div class="control-group">
-				<input type="password" id="inputPassword" placeholder="Password">
+				<input type="password" name="password" id="inputPassword" placeholder="Password">
 			  </div>
 			  <div class="control-group">
 				<label class="checkbox">
 				<input type="checkbox"> Remember me
 				</label>
 			  </div>
+                          
+                          <input type="hidden" name="${_csrf.parameterName}"
+                                            value="${_csrf.token}" />
+                          
+                            <button type="submit" class="btn btn-success">Sign in</button>
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        
+                        
 			</form>		
-			<button type="submit" class="btn btn-success">Sign in</button>
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			
 		  </div>
 	</div>
 	</li>
@@ -72,3 +97,12 @@
 </div>
 </div>
 <!-- Header End====================================================================== -->
+<form action="${pageContext.request.contextPath}/j_spring_security_logout" method="post" id="logoutForm">
+    <input type="hidden" name="${_csrf.parameterName}"
+            value="${_csrf.token}" />
+</form>
+<script>
+        function formSubmit() {
+                document.getElementById("logoutForm").submit();
+        }
+</script>        

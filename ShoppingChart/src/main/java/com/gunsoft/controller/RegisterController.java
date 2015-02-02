@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -57,8 +58,15 @@ public class RegisterController {
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String page(ModelMap modelMap) {
+        
+        if(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
+        {
+            return "redirect:/";
+        }
+        
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "register";
     }
     
@@ -66,6 +74,11 @@ public class RegisterController {
     public String save(ModelMap modelMap ,@ModelAttribute Customer customer, @ModelAttribute User user, @ModelAttribute Address address
         , @RequestParam(value = "firstNameAddress", required = false) String firstNameAddress, @RequestParam(value = "lastNameAddress", required = false) String lastNameAddress ) 
     {
+        if(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
+        {
+            return "redirect:/";
+        }
+        
         Set<UserRole> userRole = new HashSet<UserRole>();
         userRole.add(new UserRole(user , "ROLE_USER"));
         user.setEnabled(true);
@@ -88,7 +101,8 @@ public class RegisterController {
         
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        return "register";
+        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
+        return "redirect:/login";
     }
     
     @InitBinder

@@ -6,11 +6,9 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
-	<!-- enable use-expressions -->
-	<http auto-config="true" use-expressions="true" >
+        <!-- enable use-expressions -->
+	<http pattern="/admin/**" auto-config="true" use-expressions="true" >
                 <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-                <intercept-url pattern="/loginAdmin" access=""  />
-                <intercept-url pattern="/**" access=""  />
                 
                 <!-- access denied page -->
 		<access-denied-handler error-page="/403" />
@@ -18,7 +16,7 @@
 		<form-login 
 		    login-page="/loginAdmin" 
 		    default-target-url="/admin"
-			authentication-failure-url="/loginAdmin" 
+			authentication-failure-url="/loginAdmin?error" 
 			username-parameter="username"
 			password-parameter="password" />
 		<logout logout-success-url="/loginAdmin?logout" />
@@ -26,7 +24,26 @@
 		<csrf />
                 
 	</http>
- 
+    
+        <!-- enable use-expressions -->
+	<http  auto-config="true" use-expressions="true" >
+                <intercept-url pattern="/customer/**" access="hasRole('ROLE_USER')" />
+                
+                <!-- access denied page -->
+		<access-denied-handler error-page="/403" />
+                
+		<form-login 
+		    login-page="/" 
+                        default-target-url="/customer"
+			authentication-failure-url="/login?error" 
+			username-parameter="username"
+			password-parameter="password" />
+		<logout logout-success-url="/login?logout" />
+		<!-- enable csrf protection -->
+		<csrf />
+                
+	</http>
+    
 	<authentication-manager>
 		<authentication-provider user-service-ref="myUserDetailsService" >
 		</authentication-provider>

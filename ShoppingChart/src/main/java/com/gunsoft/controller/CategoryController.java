@@ -9,6 +9,7 @@ import com.gunsoft.bean.Category;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class CategoryController {
         modelMap.addAttribute("amountCategory", categoryService.getCategoryCount(category));
         modelMap.addAttribute("category", category);
         modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, category, page));
+        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "category";
     }
 }

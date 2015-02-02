@@ -8,6 +8,7 @@ package com.gunsoft.controller;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ public class SearchController {
             modelMap.addAttribute("productsfound", productService.getAllByCategoryAndTitleProduct("%" + titleProduct + "%", categoryService.getByCode(codeCategory), 9));
         }
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "search";
     }
 }

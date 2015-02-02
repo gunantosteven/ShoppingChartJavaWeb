@@ -8,6 +8,7 @@ package com.gunsoft.controller;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class ContactController {
     
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
+        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "contact";
     }
 }

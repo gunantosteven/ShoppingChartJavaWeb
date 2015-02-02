@@ -10,6 +10,7 @@ import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.ProductService;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class ProductController {
         Product product = productService.getByCode(code);
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, product.getCategory()));
+        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "productDetails";
     }
 }

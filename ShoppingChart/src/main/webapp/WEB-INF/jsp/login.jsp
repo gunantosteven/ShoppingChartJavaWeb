@@ -116,28 +116,38 @@
 <!-- Sidebar end=============================================== -->
 		<div class="span9">		
 			
-		<h4>Latest Products </h4>
-			  <ul class="thumbnails">
-                              <c:forEach var="product" items="${latestProducts}">
-                                  <li class="span3">
-                                    <div class="thumbnail">
-                                        <a  href="${pageContext.request.contextPath}/product/${product.code}">
-                                            <div class="images">
-                                                <img src="data:image/jpeg;base64,${product.getEncodedImageString()}" width="160" height="160" alt=""/> 
-                                            </div>
-                                        </a>
-                                          <div class="caption">
-                                            <h5>${product.title}</h5>
-                                            <p> 
-                                                  ${product.description}
-                                            </p>
+		<h4>Login </h4>
+			  <form role="form" method="POST" action="${pageContext.request.contextPath}/j_spring_security_check" >  
+                            <fieldset>
 
-                                            <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
-                                          </div>
+                                <c:if test="${not empty error}">
+                                <div class="error">${error}</div>
+                                </c:if>
+                                <c:if test="${not empty msg}">
+                                        <div class="msg">${msg}</div>
+                                </c:if>
+                                
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="username" type="text" value="">
                                     </div>
-                                  </li>
-                              </c:forEach>
-			  </ul>	
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        </label>
+                                    </div>
+                                    <!-- Change this to a button or input when using this as a form -->
+                                    <button type="submit" class="btn btn-success">Sign in</button>
+                                </fieldset>
+
+                                <input type="hidden" name="${_csrf.parameterName}"
+                                        value="${_csrf.token}" />
+
+                            </fieldset>
+                            </form>
 
 		</div>
 		</div>
