@@ -49,12 +49,6 @@ public class RegisterController {
     @Autowired
     private CustomerService customerService;
     
-    @Autowired
-    private MyUserDetailsService myUserDetailsService;
-    
-    @Autowired
-    private AddressService addressService;
-    
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String page(ModelMap modelMap) {

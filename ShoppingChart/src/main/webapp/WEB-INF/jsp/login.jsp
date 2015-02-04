@@ -16,10 +16,7 @@
     <jsp:include page="include/header.jsp" />
   </head>
 <body>
-<jsp:include page="include/menu.jsp" >
-    <jsp:param name="amountCategories" value="${amountCategories}"/>
-    <jsp:param name="name" value="${name}"/>
-</jsp:include>
+<jsp:include page="include/menu.jsp" />
 <div id="carouselBlk">
 	<div id="myCarousel" class="carousel slide">
 		<div class="carousel-inner">

@@ -8,9 +8,7 @@
   </head>
 <body>
 <!-- Navbar ================================================== -->
-<jsp:include page="include/menu.jsp" >
-    <jsp:param name="amountCategories" value="${amountCategories}"/>
-</jsp:include>
+<jsp:include page="include/menu.jsp" />
 <!-- Header End====================================================================== -->
 <div id="mainBody">
 	<div class="container">
@@ -76,9 +74,9 @@
 		<div class="controls">
 		<select class="span1" name="title">
 			<option value="">-</option>
-			<option value="1">Mr.</option>
-			<option value="2">Mrs</option>
-			<option value="3">Miss</option>
+			<option value="Mr">Mr.</option>
+			<option value="Mrs">Mrs</option>
+			<option value="Miss">Miss</option>
 		</select>
 		</div>
 		</div>

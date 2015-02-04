@@ -5,6 +5,8 @@
  */
 package com.gunsoft.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +20,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -34,6 +37,8 @@ public class Customer {
     private String title;
     private String firstName;
     private String lastName;
+    @Column
+    @Type(type="date")
     private Date birth;
     @ManyToOne
     @JoinColumn(name="USER_ID")
@@ -64,7 +69,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Date getBirth() {
+    public Date getBirth() throws ParseException {
         return birth;
     }
 

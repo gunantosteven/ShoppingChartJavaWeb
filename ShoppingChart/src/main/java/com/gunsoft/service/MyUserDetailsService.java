@@ -39,7 +39,7 @@ public class MyUserDetailsService extends BaseService<com.gunsoft.bean.User> imp
 	public UserDetails loadUserByUsername(final String username) 
 		throws UsernameNotFoundException {
  
-		com.gunsoft.bean.User user = getById(username);
+		com.gunsoft.bean.User user = getByUsername(username);
 		List<GrantedAuthority> authorities = 
                                       buildUserAuthority(user.getUserRole());
  
@@ -98,8 +98,7 @@ public class MyUserDetailsService extends BaseService<com.gunsoft.bean.User> imp
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
-        @Override
-        public com.gunsoft.bean.User getById(String username) {
+        public com.gunsoft.bean.User getByUsername(String username) {
             List<com.gunsoft.bean.User> users = new ArrayList<com.gunsoft.bean.User>();
             
             users =   sessionFactory.getCurrentSession().createQuery("from User where username = :username")
@@ -121,4 +120,11 @@ public class MyUserDetailsService extends BaseService<com.gunsoft.bean.User> imp
         public long getSize(String search) {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
+
+    @Override
+    public com.gunsoft.bean.User getById(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 }

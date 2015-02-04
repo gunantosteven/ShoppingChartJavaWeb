@@ -51,9 +51,9 @@ public class CustomerService extends BaseService<Customer> {
 
     @Transactional(readOnly=true)
     @Override
-    public Customer getById(String id) {
-        return (Customer) sessionFactory.getCurrentSession().createQuery("from Customer where id = :id")
-                         .setParameter("id", id).uniqueResult();
+    public Customer getById(String uuid) {
+        return (Customer) sessionFactory.getCurrentSession().createQuery("from Customer where uuid = :uuid")
+                         .setParameter("uuid", uuid).uniqueResult();
     }
 
     @Override

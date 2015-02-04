@@ -16,9 +16,7 @@
     <jsp:include page="include/header.jsp" />
   </head>
 <body>
-<jsp:include page="include/menu.jsp" >
-    <jsp:param name="amountCategories" value="${amountCategories}"/>
-</jsp:include>
+<jsp:include page="include/menu.jsp" />
 <!-- Header End====================================================================== -->
 <div id="mainBody">
 	<div class="container">

@@ -5,9 +5,7 @@
   </head>
 <body>
 <!-- Navbar ================================================== -->
-<jsp:include page="include/menu.jsp" >
-    <jsp:param name="amountCategories" value="${amountCategories}"/>
-</jsp:include>
+<jsp:include page="include/menu.jsp" />
 <!-- Header End====================================================================== -->
 <div id="mainBody">
 <div class="container">
