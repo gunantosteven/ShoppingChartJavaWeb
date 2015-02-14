@@ -95,7 +95,7 @@
 		<div class="control-group">
 		<label class="control-label" for="input_email">Email <sup>*</sup></label>
 		<div class="controls">
-                    <input type="text" id="input_email" name="username" placeholder="Email">
+                    <input type="text" id="input_email" name="username" placeholder="Email" value="${email}">
 		</div>
 	  </div>	  
 	<div class="control-group">

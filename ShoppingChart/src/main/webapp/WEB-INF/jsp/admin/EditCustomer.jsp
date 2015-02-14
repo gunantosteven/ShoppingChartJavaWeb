@@ -1,4 +1,4 @@
-<%-- 
+cu<%-- 
     Document   : EditCustomer
     Created on : Feb 4, 2015, 7:51:48 PM
     Author     : gunanto
@@ -87,7 +87,7 @@
                                                 <label class="control-label">Date of Birth <sup>*</sup></label>
                                                 <div class="controls">
                                                   <!-- Date Picker -->
-                                                  <input class="form-control" placeholder="click to show datepicker"  id="datepicker" name="birth" required type="date" value="${customer.birth}">
+                                                  <input class="form-control" placeholder="click to show datepicker"   name="birth"  type="date" value="${customer.birth}" required>
                                                 </div>
                                         </div>
 
@@ -194,5 +194,16 @@
         
         
     </body>
+    
+    <script type="text/javascript">
+        // When the document is ready
+        $(document).ready(function () {
+
+            $('#datepicker').datepicker({
+                format: "yyyy-mm-dd"
+            });  
+
+        });
+    </script>
 </html>
 

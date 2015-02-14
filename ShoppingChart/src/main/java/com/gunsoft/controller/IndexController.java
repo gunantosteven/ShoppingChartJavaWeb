@@ -44,7 +44,9 @@ public class IndexController {
     @RequestMapping(value = "/404", method = RequestMethod.GET)
     public String getPages(ModelMap modelMap) {
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
+        //modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "404";
     }
+    
+    
 }

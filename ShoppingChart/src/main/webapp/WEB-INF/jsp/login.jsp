@@ -17,70 +17,7 @@
   </head>
 <body>
 <jsp:include page="include/menu.jsp" />
-<div id="carouselBlk">
-	<div id="myCarousel" class="carousel slide">
-		<div class="carousel-inner">
-		  <div class="item active">
-		  <div class="container">
-			<a href="register.html"><img style="width:100%" src="${pageContext.request.contextPath}/themes/images/carousel/1.png" alt="special offers"/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		  <div class="item">
-		  <div class="container">
-			<a href="register.html"><img style="width:100%" src="${pageContext.request.contextPath}/themes/images/carousel/2.png" alt=""/></a>
-				<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		  <div class="item">
-		  <div class="container">
-			<a href="register.html"><img src="${pageContext.request.contextPath}/themes/images/carousel/3.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-			
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="register.html"><img src="${pageContext.request.contextPath}/themes/images/carousel/4.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		   
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="register.html"><img src="${pageContext.request.contextPath}/themes/images/carousel/5.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-			</div>
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="register.html"><img src="${pageContext.request.contextPath}/themes/images/carousel/6.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		</div>
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-		<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-	  </div> 
-</div>
+
 <div id="mainBody">
 	<div class="container">
 	<div class="row">
@@ -111,43 +48,70 @@
 			  </div>
 	</div>
 <!-- Sidebar end=============================================== -->
-		<div class="span9">		
-			
-		<h4>Login </h4>
-			  <form role="form" method="POST" action="${pageContext.request.contextPath}/j_spring_security_check" >  
-                            <fieldset>
+		<div class="span9">
+                    <ul class="breadcrumb">
+                                <li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
+                                <li class="active">Login</li>
+                    </ul>
+                    <h3> Login</h3>	
+                    <hr class="soft"/>
 
-                                <c:if test="${not empty error}">
-                                <div class="error">${error}</div>
-                                </c:if>
-                                <c:if test="${not empty msg}">
-                                        <div class="msg">${msg}</div>
-                                </c:if>
-                                
-                                <fieldset>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="username" type="text" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                        </label>
-                                    </div>
-                                    <!-- Change this to a button or input when using this as a form -->
-                                    <button type="submit" class="btn btn-success">Sign in</button>
-                                </fieldset>
-
-                                <input type="hidden" name="${_csrf.parameterName}"
+                    <div class="row">
+                            <div class="span4">
+                                    <div class="well">
+                                    <h5>CREATE YOUR ACCOUNT</h5><br/>
+                                    Enter your e-mail address to create an account.<br/><br/><br/>
+                                    <form action="${pageContext.request.contextPath}/register">
+                                      <div class="control-group">
+                                            <label class="control-label" for="inputEmail0">E-mail address</label>
+                                            <div class="controls">
+                                              <input class="span3"  type="text" id="inputEmail0" name="email" placeholder="Email">
+                                            </div>
+                                      </div>
+                                      <div class="controls">
+                                      <button type="submit" class="btn block">Create Your Account</button>
+                                      </div>
+                                    </form>
+                            </div>
+                            </div>
+                            <div class="span1"> &nbsp;</div>
+                            <div class="span4">
+                                    <div class="well">
+                                    <h5>ALREADY REGISTERED ?</h5>
+                                    <c:if test="${not empty error}">
+                                        <div class="error">${error}</div>
+                                    </c:if>
+                                    <c:if test="${not empty msg}">
+                                        <div class="success">${msg}</div>
+                                    </c:if>
+                                    <form role="form" method="POST" action="${pageContext.request.contextPath}/j_spring_security_check">
+                                      <div class="control-group">
+                                            <label class="control-label" for="inputEmail1">Email</label>
+                                            <div class="controls">
+                                              <input class="span3"  type="text" id="inputEmail1" name="username" placeholder="Email">
+                                            </div>
+                                      </div>
+                                      <div class="control-group">
+                                            <label class="control-label" for="inputPassword1">Password</label>
+                                            <div class="controls">
+                                              <input type="password" class="span3"  id="inputPassword1" name="password" placeholder="Password">
+                                            </div>
+                                      </div>
+                                      <div class="control-group">
+                                            <div class="controls">
+                                              <button type="submit" class="btn">Sign in</button> <a href="${pageContext.request.contextPath}/forgetpass">Forget password?</a>
+                                            </div>
+                                      </div>
+                                      
+                                      <input type="hidden" name="${_csrf.parameterName}"
                                         value="${_csrf.token}" />
-
-                            </fieldset>
-                            </form>
+                                    </form>
+                            </div>
+                            </div>
+                    </div>	
 
 		</div>
-		</div>
+	</div>
 	</div>
 </div>
                          
@@ -156,3 +120,26 @@
 <span id="themesBtn"></span>
 </body>
 </html>
+
+<style>
+    
+    .info, .success, .warning, .error, .validation {
+        border: 1px solid;
+        margin: 10px 0px;
+        padding:15px 10px 15px 50px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+    }
+    
+    .error {
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('error.png');
+    }
+    
+    .success {
+        color: #4F8A10;
+        background-color: #DFF2BF;
+        background-image:url('success.png');
+    }
+</style>    

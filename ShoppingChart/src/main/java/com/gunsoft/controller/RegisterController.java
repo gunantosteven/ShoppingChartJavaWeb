@@ -51,7 +51,7 @@ public class RegisterController {
     
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String page(ModelMap modelMap) {
+    public String page(ModelMap modelMap, @RequestParam String email) {
         
         if(!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser"))
         {
@@ -61,6 +61,7 @@ public class RegisterController {
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
         modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
+        modelMap.addAttribute("email", email);
         return "register";
     }
     

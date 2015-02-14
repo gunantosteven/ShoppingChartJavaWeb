@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ import org.hibernate.annotations.Parameter;
  */
 @Entity
 @Table(name="T_ADDRESS_SHIPPING")
-public class AddressShipping {
+public class AddressShipping implements Serializable  {
     @Id
     @Column(name="id", unique=true, nullable=false)
     @GeneratedValue(generator="gen")

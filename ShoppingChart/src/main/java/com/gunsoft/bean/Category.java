@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ import org.hibernate.search.annotations.Store;
  */
 @Entity
 @Table(name="T_CATEGORY")
-public class Category {
+public class Category implements Serializable  {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")

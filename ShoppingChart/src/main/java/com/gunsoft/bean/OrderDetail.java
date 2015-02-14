@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name="T_ORDERDETAIL")
-public class OrderDetail {
+public class OrderDetail implements Serializable {
     
     @Id
     @GeneratedValue(generator="system-uuid")
@@ -36,22 +37,22 @@ public class OrderDetail {
     @JoinColumn(name="ORDER_ID")
     private Order order;
     @ManyToOne
-    @JoinColumn(name="ITEMCATEGORY_ID")
-    private ItemCategory itemCategory;
+    @JoinColumn(name="PRODUCT_ID")
+    private Product product;
     private int quantity;
-    private int price;
+    private Long price;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(String uuid, Order order, ItemCategory itemCategory, int quantity, int price) {
+    public OrderDetail(String uuid, Order order, Product product, int quantity, Long price) {
         this.uuid = uuid;
         this.order = order;
-        this.itemCategory = itemCategory;
+        this.product = product;
         this.quantity = quantity;
         this.price = price;
     }
-
+    
     public String getUuid() {
         return uuid;
     }
@@ -60,12 +61,12 @@ public class OrderDetail {
         this.uuid = uuid;
     }
 
-    public ItemCategory getItemCategory() {
-        return itemCategory;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setItemCategory(ItemCategory itemCategory) {
-        this.itemCategory = itemCategory;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Order getOrder() {
@@ -76,11 +77,11 @@ public class OrderDetail {
         this.order = order;
     }
 
-    public int getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

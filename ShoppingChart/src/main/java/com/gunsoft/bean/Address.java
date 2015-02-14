@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ import org.hibernate.annotations.Parameter;
  */
 @Entity
 @Table(name="T_ADDRESS")
-public class Address {
+public class Address implements Serializable {
     @GenericGenerator(name = "generator", strategy = "foreign", 
     parameters = @Parameter(name = "property", value = "customer"))
     @Id

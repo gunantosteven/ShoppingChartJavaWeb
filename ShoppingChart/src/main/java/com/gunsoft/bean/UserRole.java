@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "T_USER_ROLES",
 	uniqueConstraints = @UniqueConstraint(
 		columnNames = { "role", "username" }))
-public class UserRole{
+public class UserRole implements Serializable {
  
 	private Integer userRoleId;
 	private User user;

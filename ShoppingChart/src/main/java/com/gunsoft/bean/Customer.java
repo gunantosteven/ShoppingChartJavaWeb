@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +29,7 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name="T_CUSTOMER")
-public class Customer {
+public class Customer implements Serializable  {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
@@ -71,6 +72,12 @@ public class Customer {
 
     public Date getBirth() throws ParseException {
         return birth;
+    }
+    
+    public String getFormatBirth()
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(birth);
     }
 
     public void setBirth(Date birth) {

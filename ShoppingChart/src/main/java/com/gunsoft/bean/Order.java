@@ -5,6 +5,7 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -29,7 +30,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name="T_ORDER")
-public class Order {
+public class Order implements Serializable  {
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")

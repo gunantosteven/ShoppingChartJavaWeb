@@ -5,11 +5,13 @@
  */
 package com.gunsoft.bean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gunanto
  */
-public class AmountCategory {
+public class AmountCategory implements Serializable  {
     private String title;
     private String code;
     private Long count;
