@@ -166,9 +166,9 @@
 			</div>
 		</div>		
 		<div class="control-group">
-			<label class="control-label" for="postcode">Zip / Postal Code<sup>*</sup></label>
+			<label class="control-label" for="kodePos">Kode Pos<sup>*</sup></label>
 			<div class="controls">
-			  <input type="text" id="postcode" name="zip" placeholder="Zip / Postal Code"/> 
+			  <input type="text" id="kodePos" name="kodePos" placeholder="Kode Pos"/> 
 			</div>
 		</div>
 		

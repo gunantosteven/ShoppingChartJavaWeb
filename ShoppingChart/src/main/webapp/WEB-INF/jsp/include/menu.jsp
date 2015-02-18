@@ -13,12 +13,12 @@
 <div id="welcomeLine" class="row">
     <div class="span6">Welcome! 
         <c:choose>
-        <c:when test="${name != 'anonymousUser'}">
-            <strong>${name}</strong> <a href="javascript:formSubmit()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-        </c:when>
-        <c:otherwise>
-            <strong>User</strong> 
-        </c:otherwise>
+            <c:when test="${name != 'anonymousUser'}">
+                <strong>${name}</strong> <a href="javascript:formSubmit()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            </c:when>
+            <c:otherwise>
+                <strong>User</strong> 
+            </c:otherwise>
         </c:choose>
     </div>
 	<div class="span6">

@@ -39,7 +39,7 @@ public class Address implements Serializable {
     private String address2;
     private String city;
     private String country;
-    private String zip;
+    private String kodePos;
     private String additionalInformation;
     private String homephone;
     private String mobilephone;
@@ -50,7 +50,7 @@ public class Address implements Serializable {
     public Address() {
     }
 
-    public Address(String id, String firstName, String lastName, String company, String address1, String address2, String city, String country, String zip, String additionalInformation, String homephone, String mobilephone, Customer customer) {
+    public Address(String id, String firstName, String lastName, String company, String address1, String address2, String city, String country, String kodePos, String additionalInformation, String homephone, String mobilephone, Customer customer) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,7 +59,7 @@ public class Address implements Serializable {
         this.address2 = address2;
         this.city = city;
         this.country = country;
-        this.zip = zip;
+        this.kodePos = kodePos;
         this.additionalInformation = additionalInformation;
         this.homephone = homephone;
         this.mobilephone = mobilephone;
@@ -162,11 +162,11 @@ public class Address implements Serializable {
         this.mobilephone = mobilephone;
     }
 
-    public String getZip() {
-        return zip;
+    public String getKodePos() {
+        return kodePos;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setKodePos(String kodePos) {
+        this.kodePos = kodePos;
     }
 }

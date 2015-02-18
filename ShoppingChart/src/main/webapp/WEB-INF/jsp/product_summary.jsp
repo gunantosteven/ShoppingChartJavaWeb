@@ -56,7 +56,14 @@
                     </ul>
                     <h3>  SHOPPING CART [ <small>${sessionScope.listOrderDetail.size() ==  null ? 0 : sessionScope.listOrderDetail.size()} Item(s) </small>]<a href="${pageContext.request.contextPath}/" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
                     <hr class="soft"/>
-                    <table class="table table-bordered">
+                    <c:choose>
+                        <c:when test="${name != 'anonymousUser'}">
+                            <table class="table table-bordered" style="display:none;">
+                        </c:when>
+                        <c:otherwise>
+                            <table class="table table-bordered">
+                        </c:otherwise>
+                    </c:choose>
                             <tr><th> I AM ALREADY REGISTERED  </th></tr>
                              <tr> 
                              <td>
@@ -186,7 +193,7 @@
                                       </tr>
                         </table>		
                     <a href="${pageContext.request.contextPath}/" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
-                    <a href="${pageContext.request.contextPath}/login" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
+                    <a href="${pageContext.request.contextPath}/checkout" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>
 		
 
 		</div>

@@ -36,8 +36,6 @@ public class Order implements Serializable  {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "uuid", unique = true)
     private String uuid;
-    private String shippingAddress;
-    private String billingAddress;
     private int amount;
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -47,7 +45,7 @@ public class Order implements Serializable  {
     private List<OrderDetail> listOrderDetail;
     @OneToOne(mappedBy="order")
     @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private AddressShipping addressShipping;
+    private AddressOrder addressOrder;
     @ManyToOne
     @JoinColumn(name="CUSTOMER_ID")
     private Customer customer;
@@ -55,26 +53,24 @@ public class Order implements Serializable  {
     public Order() {
     }
 
-    public Order(String uuid, String shippingAddress, String billingAddress, int amount, Status status, Date date, List<OrderDetail> listOrderDetail, AddressShipping addressShipping, Customer customer) {
+    public Order(String uuid, int amount, Status status, Date date, List<OrderDetail> listOrderDetail, AddressOrder addressOrder, Customer customer) {
         this.uuid = uuid;
-        this.shippingAddress = shippingAddress;
-        this.billingAddress = billingAddress;
         this.amount = amount;
         this.status = status;
         this.date = date;
         this.listOrderDetail = listOrderDetail;
-        this.addressShipping = addressShipping;
+        this.addressOrder = addressOrder;
         this.customer = customer;
     }
 
-    public AddressShipping getAddressShipping() {
-        return addressShipping;
+    public AddressOrder getAddressOrder() {
+        return addressOrder;
     }
 
-    public void setAddressShipping(AddressShipping addressShipping) {
-        this.addressShipping = addressShipping;
+    public void setAddressOrder(AddressOrder addressOrder) {
+        this.addressOrder = addressOrder;
     }
-
+    
     public Customer getCustomer() {
         return customer;
     }
@@ -89,14 +85,6 @@ public class Order implements Serializable  {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public String getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
     }
 
     public Date getDate() {
@@ -122,15 +110,7 @@ public class Order implements Serializable  {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
-
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
+    
     public Status getStatus() {
         return status;
     }

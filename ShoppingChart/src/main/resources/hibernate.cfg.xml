@@ -13,7 +13,7 @@
     <mapping class="com.gunsoft.bean.User"/>
     <mapping class="com.gunsoft.bean.UserRole"/>
     <mapping class="com.gunsoft.bean.Address"/>
-    <mapping class="com.gunsoft.bean.AddressShipping"/>
+    <mapping class="com.gunsoft.bean.AddressOrder"/>
     <mapping class="com.gunsoft.bean.Customer"/>
   </session-factory>
 </hibernate-configuration>

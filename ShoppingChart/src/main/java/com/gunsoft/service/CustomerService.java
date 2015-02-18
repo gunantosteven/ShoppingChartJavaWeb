@@ -55,6 +55,13 @@ public class CustomerService extends BaseService<Customer> {
         return (Customer) sessionFactory.getCurrentSession().createQuery("from Customer where uuid = :uuid")
                          .setParameter("uuid", uuid).uniqueResult();
     }
+    
+    @Transactional(readOnly=true)
+    public Customer getByUsername(String username) {
+        return (Customer) sessionFactory.getCurrentSession().createQuery("from Customer c where c.user.username = :username")
+                         .setParameter("username", username).uniqueResult();
+    }
+
 
     @Override
     public List<String[]> select(int start, int end, String orderby, String search) {

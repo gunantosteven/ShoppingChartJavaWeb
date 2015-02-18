@@ -21,21 +21,19 @@ import org.hibernate.annotations.Parameter;
  * @author gunanto
  */
 @Entity
-@Table(name="T_ADDRESS_SHIPPING")
-public class AddressShipping implements Serializable  {
+@Table(name="T_ADDRESS_ORDER")
+public class AddressOrder implements Serializable  {
     @Id
     @Column(name="id", unique=true, nullable=false)
     @GeneratedValue(generator="gen")
     @GenericGenerator(name="gen", strategy="foreign", parameters={@Parameter(name="property", value="order")})
     private long id;
-    private String firstName;
-    private String lastName;
-    private String company;
-    private String address;
-    private String address2;
+    private String namaPenerima;
+    private String shippingAddress;
+    private String billingAddress;
     private String city;
     private String country;
-    private String zip;
+    private String kodePos;
     private String additionalInformation;
     private String homephone;
     private String mobilephone;
@@ -43,19 +41,17 @@ public class AddressShipping implements Serializable  {
     @PrimaryKeyJoinColumn
     private Order order;
 
-    public AddressShipping() {
+    public AddressOrder() {
     }
 
-    public AddressShipping(long id, String firstName, String lastName, String company, String address, String address2, String city, String country, String zip, String additionalInformation, String homephone, String mobilephone, Order order) {
+    public AddressOrder(long id, String namaPenerima, String shippingAddress, String billingAddress, String city, String country, String kodePos, String additionalInformation, String homephone, String mobilephone, Order order) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.company = company;
-        this.address = address;
-        this.address2 = address2;
+        this.namaPenerima = namaPenerima;
+        this.shippingAddress = shippingAddress;
+        this.billingAddress = billingAddress;
         this.city = city;
         this.country = country;
-        this.zip = zip;
+        this.kodePos = kodePos;
         this.additionalInformation = additionalInformation;
         this.homephone = homephone;
         this.mobilephone = mobilephone;
@@ -70,20 +66,20 @@ public class AddressShipping implements Serializable  {
         this.additionalInformation = additionalInformation;
     }
 
-    public String getAddress() {
-        return address;
+    public String getBillingAddress() {
+        return billingAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
     }
 
-    public String getAddress2() {
-        return address2;
+    public String getShippingAddress() {
+        return shippingAddress;
     }
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
     public String getCity() {
@@ -94,12 +90,12 @@ public class AddressShipping implements Serializable  {
         this.city = city;
     }
 
-    public String getCompany() {
-        return company;
+    public String getNamaPenerima() {
+        return namaPenerima;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setNamaPenerima(String namaPenerima) {
+        this.namaPenerima = namaPenerima;
     }
 
     public String getCountry() {
@@ -110,28 +106,12 @@ public class AddressShipping implements Serializable  {
         this.country = country;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getHomephone() {
         return homephone;
     }
 
     public void setHomephone(String homephone) {
         this.homephone = homephone;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getMobilephone() {
@@ -157,12 +137,12 @@ public class AddressShipping implements Serializable  {
     public void setOrder(Order order) {
         this.order = order;
     }
-    
-    public String getZip() {
-        return zip;
+
+    public String getKodePos() {
+        return kodePos;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setKodePos(String kodePos) {
+        this.kodePos = kodePos;
     }
 }

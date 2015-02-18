@@ -6,7 +6,7 @@
 package com.gunsoft.service;
 
 import com.gunsoft.bean.Address;
-import com.gunsoft.bean.AddressShipping;
+import com.gunsoft.bean.AddressOrder;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("addressShippingService")
 @Transactional
-public class AddressShippingService extends BaseService<AddressShipping> {
+public class AddressShippingService extends BaseService<AddressOrder> {
 
     @Override
     public  void saveOrUpdate(Object o) throws Exception
@@ -45,14 +45,14 @@ public class AddressShippingService extends BaseService<AddressShipping> {
 
     @Transactional(readOnly=true)
     @Override
-    public List<AddressShipping> getAll() {
-        return (List<AddressShipping>) sessionFactory.getCurrentSession().createQuery("from AddressShipping").list();
+    public List<AddressOrder> getAll() {
+        return (List<AddressOrder>) sessionFactory.getCurrentSession().createQuery("from AddressShipping").list();
     }
 
     @Transactional(readOnly=true)
     @Override
-    public AddressShipping getById(String id) {
-        return (AddressShipping) sessionFactory.getCurrentSession().createQuery("from AddressShipping where id = :id")
+    public AddressOrder getById(String id) {
+        return (AddressOrder) sessionFactory.getCurrentSession().createQuery("from AddressShipping where id = :id")
                          .setParameter("id", id).uniqueResult();
     }
 
