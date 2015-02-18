@@ -17,70 +17,7 @@
   </head>
 <body>
 <jsp:include page="include/menu.jsp" />
-<div id="carouselBlk">
-	<div id="myCarousel" class="carousel slide">
-		<div class="carousel-inner">
-		  <div class="item active">
-		  <div class="container">
-			<a href="${pageContext.request.contextPath}/register"><img style="width:100%" src="${pageContext.request.contextPath}/themes/images/carousel/1.png" alt="special offers"/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		  <div class="item">
-		  <div class="container">
-			<a href="${pageContext.request.contextPath}/register"><img style="width:100%" src="${pageContext.request.contextPath}/themes/images/carousel/2.png" alt=""/></a>
-				<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		  <div class="item">
-		  <div class="container">
-			<a href="${pageContext.request.contextPath}/register"><img src="${pageContext.request.contextPath}/themes/images/carousel/3.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-			
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="${pageContext.request.contextPath}/register"><img src="${pageContext.request.contextPath}/themes/images/carousel/4.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		   
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="${pageContext.request.contextPath}/register"><img src="${pageContext.request.contextPath}/themes/images/carousel/5.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-			</div>
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="${pageContext.request.contextPath}/register"><img src="${pageContext.request.contextPath}/themes/images/carousel/6.png" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		</div>
-		<a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-		<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-	  </div> 
-</div>
+
 <div id="mainBody">
 	<div class="container">
 	<div class="row">
@@ -150,7 +87,7 @@
                               </td>
                               </tr>
                     </table>		
-
+                    <label type="text" name="position" id="position" />                          
                     <table class="table table-bordered">
                           <thead>
                             <tr>
@@ -170,10 +107,10 @@
                                     <td>${orderDetail.product.description}</td>
                                     <td>
                                         <div class="input-append">
-                                            <input class="span1" style="max-width:34px" placeholder="${orderDetail.quantity}" id="appendedInputButtons" size="16" type="text">
-                                            <button class="btn" type="button"><i class="icon-minus"></i></button>
-                                            <button class="btn" type="button"><i class="icon-plus"></i></button>
-                                            <button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>
+                                            <input class="span1" style="max-width:34px" placeholder="${orderDetail.quantity}" id="appendedInputButtons${orderDetail.product.code}" name="appendedInputButtons${orderDetail.product.code}" size="16" type="text">
+                                            <a href="${pageContext.request.contextPath}/minusquantity/${orderDetail.product.code}#appendedInputButtons${orderDetail.product.code}"><button class="btn" type="button"><i class="icon-minus"></i></button></a>
+                                            <a href="${pageContext.request.contextPath}/plusquantity/${orderDetail.product.code}#appendedInputButtons${orderDetail.product.code}"><button class="btn" type="button"><i class="icon-plus"></i></button></a>
+                                            <a href="${pageContext.request.contextPath}/deletecart/${orderDetail.product.code}#position"><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button></a>
                                         </div>
                                   </td>
                                   <td>Rp.${orderDetail.product.price}</td>
@@ -262,3 +199,53 @@
 <span id="themesBtn"></span>
 </body>
 </html>
+
+
+<script>
+    (function($){
+    $.fn.extend({
+        donetyping: function(callback,timeout){
+            timeout = timeout || 1e3; // 1 second default timeout
+            var timeoutReference,
+                doneTyping = function(el){
+                    if (!timeoutReference) return;
+                    timeoutReference = null;
+                    callback.call(el);
+                };
+            return this.each(function(i,el){
+                var $el = $(el);
+                // Chrome Fix (Use keyup over keypress to detect backspace)
+                // thank you @palerdot
+                $el.is(':input') && $el.on('keyup keypress',function(e){
+                    // This catches the backspace button in chrome, but also prevents
+                    // the event from triggering too premptively. Without this line,
+                    // using tab/shift+tab will make the focused element fire the callback.
+                    if (e.type=='keyup' && e.keyCode!=8) return;
+                    
+                    // Check if timeout has been set. If it has, "reset" the clock and
+                    // start over again.
+                    if (timeoutReference) clearTimeout(timeoutReference);
+                    timeoutReference = setTimeout(function(){
+                        // if we made it here, our timeout has elapsed. Fire the
+                        // callback
+                        doneTyping(el);
+                    }, timeout);
+                }).on('blur',function(){
+                    // If we can, fire the event since we're leaving the field
+                    doneTyping(el);
+                });
+            });
+        }
+    });
+})(jQuery);
+<c:forEach var="orderDetail" items="${sessionScope.listOrderDetail}">
+    
+    $('#appendedInputButtons${orderDetail.product.code}').donetyping(function(){
+        var value = $('#appendedInputButtons${orderDetail.product.code}').val();
+        //console.log(value);
+        window.location.href = '${pageContext.request.contextPath}/setquantity/${orderDetail.product.code}?quantity=' + value + '#appendedInputButtons${orderDetail.product.code}' ;
+    });
+    
+</c:forEach>
+
+</script>    
