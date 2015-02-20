@@ -23,20 +23,20 @@ import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name="T_ADDRESS_ORDER")
 public class AddressOrder implements Serializable  {
+    @GenericGenerator(name = "generator", strategy = "foreign", 
+    parameters = @Parameter(name = "property", value = "order"))
     @Id
-    @Column(name="id", unique=true, nullable=false)
-    @GeneratedValue(generator="gen")
-    @GenericGenerator(name="gen", strategy="foreign", parameters={@Parameter(name="property", value="order")})
-    private long id;
+    @GeneratedValue(generator = "generator")
+    @Column(name = "ORDER_ID", unique = true, nullable = false)
+    private String uuid;
     private String namaPenerima;
-    private String shippingAddress;
-    private String billingAddress;
-    private String city;
-    private String country;
+    private String alamatPenagihan;
+    private String alamatPengiriman;
+    private String kota;
+    private String negara;
     private String kodePos;
+    private String telepon;
     private String additionalInformation;
-    private String homephone;
-    private String mobilephone;
     @OneToOne
     @PrimaryKeyJoinColumn
     private Order order;
@@ -44,18 +44,33 @@ public class AddressOrder implements Serializable  {
     public AddressOrder() {
     }
 
-    public AddressOrder(long id, String namaPenerima, String shippingAddress, String billingAddress, String city, String country, String kodePos, String additionalInformation, String homephone, String mobilephone, Order order) {
-        this.id = id;
+    public AddressOrder(String uuid, String namaPenerima, String alamatPenagihan, String alamatPengiriman, String kota, String negara, String kodePos, String telepon, String additionalInformation, Order order) {
+        this.uuid = uuid;
         this.namaPenerima = namaPenerima;
-        this.shippingAddress = shippingAddress;
-        this.billingAddress = billingAddress;
-        this.city = city;
-        this.country = country;
+        this.alamatPenagihan = alamatPenagihan;
+        this.alamatPengiriman = alamatPengiriman;
+        this.kota = kota;
+        this.negara = negara;
         this.kodePos = kodePos;
+        this.telepon = telepon;
         this.additionalInformation = additionalInformation;
-        this.homephone = homephone;
-        this.mobilephone = mobilephone;
         this.order = order;
+    }
+
+    public String getAlamatPenagihan() {
+        return alamatPenagihan;
+    }
+
+    public void setAlamatPenagihan(String alamatPenagihan) {
+        this.alamatPenagihan = alamatPenagihan;
+    }
+
+    public String getAlamatPengiriman() {
+        return alamatPengiriman;
+    }
+
+    public void setAlamatPengiriman(String alamatPengiriman) {
+        this.alamatPengiriman = alamatPengiriman;
     }
 
     public String getAdditionalInformation() {
@@ -66,28 +81,20 @@ public class AddressOrder implements Serializable  {
         this.additionalInformation = additionalInformation;
     }
 
-    public String getBillingAddress() {
-        return billingAddress;
+    public String getKodePos() {
+        return kodePos;
     }
 
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
+    public void setKodePos(String kodePos) {
+        this.kodePos = kodePos;
     }
 
-    public String getShippingAddress() {
-        return shippingAddress;
+    public String getKota() {
+        return kota;
     }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setKota(String kota) {
+        this.kota = kota;
     }
 
     public String getNamaPenerima() {
@@ -98,36 +105,12 @@ public class AddressOrder implements Serializable  {
         this.namaPenerima = namaPenerima;
     }
 
-    public String getCountry() {
-        return country;
+    public String getNegara() {
+        return negara;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getHomephone() {
-        return homephone;
-    }
-
-    public void setHomephone(String homephone) {
-        this.homephone = homephone;
-    }
-
-    public String getMobilephone() {
-        return mobilephone;
-    }
-
-    public void setMobilephone(String mobilephone) {
-        this.mobilephone = mobilephone;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setNegara(String negara) {
+        this.negara = negara;
     }
 
     public Order getOrder() {
@@ -138,11 +121,19 @@ public class AddressOrder implements Serializable  {
         this.order = order;
     }
 
-    public String getKodePos() {
-        return kodePos;
+    public String getTelepon() {
+        return telepon;
     }
 
-    public void setKodePos(String kodePos) {
-        this.kodePos = kodePos;
+    public void setTelepon(String telepon) {
+        this.telepon = telepon;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

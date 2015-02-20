@@ -124,7 +124,14 @@
                                             </div>
                                         </a>
                                           <div class="caption">
-                                            <h5>${product.title}</h5>
+                                              <c:choose>
+                                                    <c:when test="${product.title.length() <= 22}">
+                                                        <h5>${product.title}</h5> <br>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <h5>${product.title}</h5>
+                                                    </c:otherwise>
+                                              </c:choose>
                                             <p> 
                                                   ${product.description}
                                             </p>

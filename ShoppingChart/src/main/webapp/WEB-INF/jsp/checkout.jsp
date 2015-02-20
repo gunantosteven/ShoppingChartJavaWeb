@@ -50,7 +50,7 @@
 <!-- Sidebar end=============================================== -->
 		<div class="span9">		
 			
-                    <form class="form-horizontal" action="${pageContext.request.contextPath}/register" method="POST" >
+                    <form class="form-horizontal" action="${pageContext.request.contextPath}/checkout" method="POST" >
                     
                         <div class="control-group">
                                 <label class="control-label" for="namaPenerima">Nama Penerima <sup>*</sup></label>
@@ -95,18 +95,42 @@
                         </div>      
                                 
                         <div class="control-group">
-                                <label class="control-label" for="mobilephone">Telepon <sup>*</sup></label>
+                                <label class="control-label" for="telepon">Telepon <sup>*</sup></label>
                                 <div class="controls">
-                                    <input type="text" id="mobilephone" name="mobilephone" placeholder="Telepon" value="${customer.address.mobilephone}">
+                                    <input type="text" id="telepon" name="telepon" placeholder="Telepon" value="${customer.address.mobilephone}">
                                 </div>
                         </div>    
                                 
                         <div class="control-group">
-                                <label class="control-label" for="additionalInformation">Informasi Tambahan <sup>*</sup></label>
+                                <label class="control-label" for="informasiTambahan">Informasi Tambahan <sup>*</sup></label>
                                 <div class="controls">
                                     <input type="text" id="additionalInformation" name="additionalInformation" placeholder="Informasi Tamabahan" value="${customer.address.additionalInformation}">
                                 </div>
-                        </div>           
+                        </div> 
+                                
+                        <div class="control-group">
+                                <label class="control-label" for="bank">BANK <sup>*</sup></label>
+                                <div class="controls">
+                                    <select class="span1" name="bank">
+                                            <option value="BCA">BCA.</option>
+                                            <option value="MANDIRI">MANDIRI</option>
+                                    </select>
+                                </div>
+                        </div>  
+                                
+                        <div class="control-group">
+                                <label class="control-label" for="noRekening">No Rekening <sup>*</sup></label>
+                                <div class="controls">
+                                    <input type="text" id="noRekening" name="noRekening" placeholder="No Rekening">
+                                </div>
+                        </div>  
+                                
+                        <div class="control-group">
+                                <label class="control-label" for="namaRekening">Nama Rekening <sup>*</sup></label>
+                                <div class="controls">
+                                    <input type="text" id="namaRekening" name="namaRekening" placeholder="Nama Rekening">
+                                </div>
+                        </div>          
                                 
                         <div class="control-group">
                                 <div class="controls">
@@ -114,6 +138,8 @@
                                 </div>
                         </div>        
                     
+                        <input type="hidden" name="${_csrf.parameterName}"
+                                            value="${_csrf.token}" />        
                     </form>
 		</div>
 		</div>

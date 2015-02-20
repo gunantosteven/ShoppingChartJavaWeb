@@ -6,6 +6,7 @@
 package com.gunsoft.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -36,15 +37,18 @@ public class Order implements Serializable  {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "uuid", unique = true)
     private String uuid;
-    private int amount;
+    private BigDecimal amount;
     @Enumerated(EnumType.STRING)
     private Status status;
     private Date date;
-    @OneToMany(mappedBy="order",cascade=CascadeType.ALL)
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    private String bank;
+    private String noRekening;
+    private String namaRekening;
+    @OneToMany(mappedBy="order")
+    @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
     private List<OrderDetail> listOrderDetail;
     @OneToOne(mappedBy="order")
-    @Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
     private AddressOrder addressOrder;
     @ManyToOne
     @JoinColumn(name="CUSTOMER_ID")
@@ -53,11 +57,14 @@ public class Order implements Serializable  {
     public Order() {
     }
 
-    public Order(String uuid, int amount, Status status, Date date, List<OrderDetail> listOrderDetail, AddressOrder addressOrder, Customer customer) {
+    public Order(String uuid, BigDecimal amount, Status status, Date date, String bank, String noRekening, String namaRekening, List<OrderDetail> listOrderDetail, AddressOrder addressOrder, Customer customer) {
         this.uuid = uuid;
         this.amount = amount;
         this.status = status;
         this.date = date;
+        this.bank = bank;
+        this.noRekening = noRekening;
+        this.namaRekening = namaRekening;
         this.listOrderDetail = listOrderDetail;
         this.addressOrder = addressOrder;
         this.customer = customer;
@@ -78,15 +85,15 @@ public class Order implements Serializable  {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-    
-    public int getAmount() {
+
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
-
+    
     public Date getDate() {
         return date;
     }
@@ -117,5 +124,29 @@ public class Order implements Serializable  {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+
+    public String getNamaRekening() {
+        return namaRekening;
+    }
+
+    public void setNamaRekening(String namaRekening) {
+        this.namaRekening = namaRekening;
+    }
+
+    public String getNoRekening() {
+        return noRekening;
+    }
+
+    public void setNoRekening(String noRekening) {
+        this.noRekening = noRekening;
     }
 }

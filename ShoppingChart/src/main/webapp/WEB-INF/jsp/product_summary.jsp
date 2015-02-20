@@ -67,7 +67,7 @@
                             <tr><th> I AM ALREADY REGISTERED  </th></tr>
                              <tr> 
                              <td>
-                                    <form class="form-horizontal">
+                                    <form action="${pageContext.request.contextPath}/j_spring_security_check" class="form-horizontal" method="POST">
                                             <div class="control-group">
                                               <label class="control-label" for="inputUsername">Username</label>
                                               <div class="controls">
@@ -90,6 +90,9 @@
                                                       <a href="forgetpass.html" style="text-decoration:underline">Forgot password ?</a>
                                                     </div>
                                             </div>
+                                              
+                                              <input type="hidden" name="${_csrf.parameterName}"
+                                        value="${_csrf.token}" />
                                     </form>
                               </td>
                               </tr>
