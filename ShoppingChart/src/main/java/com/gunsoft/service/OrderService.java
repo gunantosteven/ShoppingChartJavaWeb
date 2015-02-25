@@ -6,6 +6,7 @@
 package com.gunsoft.service;
 
 import com.gunsoft.bean.Order;
+import com.gunsoft.bean.Status;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +41,14 @@ public class OrderService extends BaseService<Order> {
     public void delete(Object o) throws Exception
     {
         sessionFactory.getCurrentSession().delete(o);
+    }
+    
+    public void updateStatus(String uuid, String status) throws Exception
+    {
+        sessionFactory.getCurrentSession().createQuery("update Order o set o.status = :status where o.uuid = :uuid")
+                .setParameter("uuid", uuid)
+                .setParameter("status", Status.valueOf(status))
+                .executeUpdate();
     }
 
     @Transactional(readOnly=true)

@@ -5,21 +5,27 @@
  */
 package com.gunsoft.controller.admin;
 
+import com.gunsoft.bean.Order;
+import com.gunsoft.bean.Status;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.OrderService;
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -47,6 +53,16 @@ public class AdminOrderController {
         modelMap.addAttribute("orderActive", "active");
         modelMap.addAttribute("order", orderService.getById(uuid));
         return "admin/EditOrder";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public String changeStatus(ModelMap modelMap, @RequestParam(value = "uuid") String uuid, @RequestParam(value = "status") String status)  {
+        try {
+            orderService.updateStatus(uuid, status);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(AdminOrderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "redirect:/admin/orders";
     }
    
 }

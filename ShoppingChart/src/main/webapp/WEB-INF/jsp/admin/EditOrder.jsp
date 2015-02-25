@@ -50,7 +50,7 @@
                                             <strong>Warning !</strong> ${error}
                                         </div>
                                     </c:if> 
-                                    <form role="form" action="${pageContext.request.contextPath}/admin/orders/detail/${order.uuid}" method="POST">
+                                    <form role="form" action="${pageContext.request.contextPath}/admin/orders" method="POST">
                                         <div class="form-group">
                                             <label>UUID</label>
                                             <input value="${order.uuid}" name="uuid" class="form-control" readonly="readonly">
@@ -74,11 +74,11 @@
                                             <label>Status</label>
                                             <select class="span1 form-control" name="status">
                                                     <option value="" ${order.status.toString() == '' ? "selected" : ""}>-</option>
-                                                    <option value="Canceled" ${order.status.toString() == 'Canceled' ? "selected" : ""}>Canceled.</option>
-                                                    <option value="Delivered" ${order.status.toString() == 'Delivered' ? "selected" : ""}>Delivered</option>
-                                                    <option value="Payment Error" ${order.status.toString() == 'Payment Error' ? "selected" : ""}>Payment Error</option>
-                                                    <option value="Refund" ${order.status.toString() == 'Refund' ? "selected" : ""} >Refund</option>
-                                                    <option value="Send" ${order.status.toString() == 'Send' ? "selected" : ""} >Send</option>
+                                                    <option value="CANCELED" ${order.status.toString() == 'Canceled' ? "selected" : ""}>Canceled.</option>
+                                                    <option value="DELIVERED" ${order.status.toString() == 'Delivered' ? "selected" : ""}>Delivered</option>
+                                                    <option value="PAYMENTERROR" ${order.status.toString() == 'Payment Error' ? "selected" : ""}>Payment Error</option>
+                                                    <option value="REFUND" ${order.status.toString() == 'Refund' ? "selected" : ""} >Refund</option>
+                                                    <option value="SEND" ${order.status.toString() == 'Send' ? "selected" : ""} >Send</option>
                                             </select>
                                             <p class="help-block">Filled with Status</p>
                                             
