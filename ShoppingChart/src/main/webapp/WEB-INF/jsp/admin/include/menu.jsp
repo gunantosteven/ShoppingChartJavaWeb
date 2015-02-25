@@ -258,6 +258,14 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="${transactionActive}">
+                            <a  href="#"><i class="fa fa-edit fa-fw"></i> Transaksi</a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a class="${orderActive}" href="${pageContext.request.contextPath}/admin/orders">Orders</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

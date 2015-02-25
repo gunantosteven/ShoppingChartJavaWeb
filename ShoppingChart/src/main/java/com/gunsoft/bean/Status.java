@@ -11,7 +11,7 @@ package com.gunsoft.bean;
  */
 public enum Status {
     
-    CANCELED("Canceled"), DELIVERED("Delivered"), PAYMENTERROR("Payment Error"), REFUND("Refund");
+    CANCELED("Canceled"), DELIVERED("Delivered"), PAYMENTERROR("Payment Error"), REFUND("Refund"), SEND("Send");
     
     private Status(String text) {
         this.text = text;

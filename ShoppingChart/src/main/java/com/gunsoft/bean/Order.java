@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +45,7 @@ public class Order implements Serializable  {
     private String bank;
     private String noRekening;
     private String namaRekening;
-    @OneToMany(mappedBy="order")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="order")
     @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
     private List<OrderDetail> listOrderDetail;
     @OneToOne(mappedBy="order")
