@@ -49,11 +49,6 @@ public class CustomerController {
         if(listOrderDetail != null && listOrderDetail.size() > 0)
             return "redirect:/product_summary";
         
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", username);
-        modelMap.addAttribute("listOrders", orderService.getByCustomerUsername(username));
         
         return "redirect:/customer/order";
     }
@@ -61,23 +56,21 @@ public class CustomerController {
     @RequestMapping(value = "/customer/order", method = RequestMethod.GET)
     public String customerOrder(ModelMap modelMap, HttpServletRequest request) {
         
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        String userName = request.getSession().getAttribute("userName").toString();
         
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", username);
-        modelMap.addAttribute("listOrders", orderService.getByCustomerUsername(username));
+        modelMap.addAttribute("listOrders", orderService.getByCustomerUsername(userName));
         
         return "customer";
     }
     
     @RequestMapping(value = "/customer/orderdetail", method = RequestMethod.GET)
-    public String customerOrderDetail(ModelMap modelMap, @RequestParam(value = "kode", required = true) String kode ) {
+    public String customerOrderDetail(ModelMap modelMap, @RequestParam(value = "kode", required = true) String kode, HttpServletRequest request ) {
         
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        String userName = request.getSession().getAttribute("userName").toString();
         
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", username);
-        modelMap.addAttribute("listOrderDetail", orderDetailService.getByIdAndUsername(kode, username));
+        modelMap.addAttribute("listOrderDetail", orderDetailService.getByIdAndUsername(kode, userName));
         
         return "customerOrderDetail";
     }

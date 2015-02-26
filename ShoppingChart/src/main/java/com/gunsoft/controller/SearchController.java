@@ -38,7 +38,6 @@ public class SearchController {
             modelMap.addAttribute("productsfound", productService.getAllByCategoryAndTitleProduct("%" + titleProduct + "%", categoryService.getByCode(codeCategory), 9));
         }
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "search";
     }
 }

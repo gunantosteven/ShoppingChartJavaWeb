@@ -36,15 +36,13 @@ public class IndexController {
 
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
-
+        
         return "index";
     }
     
     @RequestMapping(value = "/404", method = RequestMethod.GET)
     public String getPages(ModelMap modelMap) {
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        //modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "404";
     }
     

@@ -56,7 +56,6 @@ public class ProductSumarryController {
 
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         modelMap.addAttribute("totalPrice", price);
         return "product_summary";
     }

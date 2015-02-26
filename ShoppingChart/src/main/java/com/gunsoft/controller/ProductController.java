@@ -37,7 +37,6 @@ public class ProductController {
         Product product = productService.getByCode(code);
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, product.getCategory()));
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "productDetails";
     }
 }

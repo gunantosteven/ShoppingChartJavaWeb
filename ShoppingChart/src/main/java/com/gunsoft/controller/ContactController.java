@@ -28,7 +28,6 @@ public class ContactController {
     
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String index(ModelMap modelMap) {
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "contact";
     }
 }

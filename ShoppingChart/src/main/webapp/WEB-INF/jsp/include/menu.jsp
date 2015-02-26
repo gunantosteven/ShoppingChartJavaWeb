@@ -13,8 +13,8 @@
 <div id="welcomeLine" class="row">
     <div class="span6">Welcome! 
         <c:choose>
-            <c:when test="${name != 'anonymousUser'}">
-                <strong>${name}</strong> <a href="javascript:formSubmit()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <c:when test="${sessionScope.userName != '' && sessionScope.userName != null}">
+                <strong>${sessionScope.userName}</strong> <a href="javascript:formSubmit()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </c:when>
             <c:otherwise>
                 <strong>User</strong> 
@@ -51,7 +51,7 @@
 	 <li class=""><a href="${pageContext.request.contextPath}/contact">Cara Pembeliaan</a></li>
 	 <li class="">
         <c:choose>
-        <c:when test="${name == 'anonymousUser'}">
+        <c:when test="${sessionScope.userName == '' || sessionScope.userName == null}">
             <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
         </c:when>
         <c:otherwise>

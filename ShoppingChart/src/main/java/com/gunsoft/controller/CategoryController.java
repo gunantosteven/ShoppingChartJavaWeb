@@ -38,7 +38,6 @@ public class CategoryController {
         modelMap.addAttribute("amountCategory", categoryService.getCategoryCount(category));
         modelMap.addAttribute("category", category);
         modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, category, page));
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
         return "category";
     }
 }

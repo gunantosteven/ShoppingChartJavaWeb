@@ -61,7 +61,6 @@ public class CheckOutController {
         
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", c.getUser().getUsername());
         modelMap.addAttribute("customer", c);
         
         return "checkout";
@@ -96,7 +95,6 @@ public class CheckOutController {
         }
         
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", c.getUser().getUsername());
         modelMap.addAttribute("customer", c);
         //  listOrderDetail to null
         request.getSession().setAttribute("listOrderDetail", null);

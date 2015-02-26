@@ -32,7 +32,6 @@ public class ForgetPassController {
 
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
-        modelMap.addAttribute("name", SecurityContextHolder.getContext().getAuthentication().getName());
 
         return "forgetpass";
     }
