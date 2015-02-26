@@ -51,8 +51,15 @@ public class OrderDetailService extends BaseService<OrderDetail> {
     @Transactional(readOnly=true)
     @Override
     public OrderDetail getById(String id) {
-        return (OrderDetail) sessionFactory.getCurrentSession().createQuery("from OrderDetail where id = :id")
+        return (OrderDetail) sessionFactory.getCurrentSession().createQuery("from OrderDetail where uuid = :id")
                          .setParameter("id", id).uniqueResult();
+    }
+    
+    @Transactional(readOnly=true)
+    public List<OrderDetail> getByIdAndUsername(String id, String username) {
+        return (List<OrderDetail>) sessionFactory.getCurrentSession().createQuery("from OrderDetail o where o.order.uuid = :id AND o.order.customer.user.username = :username")
+                         .setParameter("id", id)
+                         .setParameter("username", username).list();
     }
 
     @Override

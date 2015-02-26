@@ -27,6 +27,8 @@
 	<link href="${pageContext.request.contextPath}/themes/css/font-awesome.css" rel="stylesheet" type="text/css">
 <!-- Google-code-prettify -->	
 	<link href="${pageContext.request.contextPath}/themes/js/google-code-prettify/prettify.css" rel="stylesheet"/>
+<!-- Sendiri CSS -->
+    <link href="${pageContext.request.contextPath}/css/sendiri.css" rel="stylesheet">
 <!-- fav and touch icons -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/themes/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.request.contextPath}/themes/images/ico/apple-touch-icon-144-precomposed.png">

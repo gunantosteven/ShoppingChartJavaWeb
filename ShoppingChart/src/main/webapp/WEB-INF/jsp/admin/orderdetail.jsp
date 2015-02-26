@@ -25,7 +25,7 @@
                 
                 <div class="row">
                     <div class="col-lg-8">
-                        <h1 class="page-header">Orders</h1>
+                        <h1 class="page-header">Order Detail</h1>
                     </div>
                     <!-- /.col-lg-8 -->
                     <div class="col-lg-4">
@@ -37,7 +37,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Orders Table
+                            Order Detail Table
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -46,22 +46,20 @@
                                     
                                     <thead>
                                         <tr>
-                                            <th>Kode Order</th>
                                             <th>Tanggal</th>
-                                            <th>Email Customer</th>
-                                            <th>Action</th>
+                                            <th>Nama Produk</th>
+                                            <th>Kategori</th>
+                                            <th>Kuantitas</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
-                                        <c:forEach var="order" items="${listOrders}">
+                                        <c:forEach var="orderDetail" items="${listOrderDetails}">
                                             <tr class="odd gradeX">
-                                                <td>${order.uuid}</td>
-                                                <td>${order.date}</td>
-                                                <td>${order.customer.user.username}</td>
-                                                <td>
-                                                    <a href="${pageContext.request.contextPath}/admin/orders/detail/${order.uuid}">Detail</a>
-                                                    <a href="${pageContext.request.contextPath}/admin/orders/delete/${order.uuid}" onClick="return confirm('Apakah Anda Yakin?')">Delete</a></td>
+                                                <td>${orderDetail.order.date}</td>
+                                                <td>${orderDetail.product.title}</td>
+                                                <td>${orderDetail.product.category.title}</td>
+                                                <td>${orderDetail.quantity}</td>
                                             </tr>                                           
                                         </c:forEach>
                                     </tbody>    

@@ -64,5 +64,12 @@ public class AdminOrderController {
         }
         return "redirect:/admin/orders";
     }
+    
+    @RequestMapping(value ="/delete/{uuid}", method = RequestMethod.GET)
+    public String delete(@PathVariable String uuid) throws Exception {
+        Order order = orderService.getById(uuid);
+        orderService.delete(order);
+        return "redirect:/admin/orders";
+    }
    
 }

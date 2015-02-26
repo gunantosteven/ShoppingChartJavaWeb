@@ -264,6 +264,9 @@
                                 <li>
                                     <a class="${orderActive}" href="${pageContext.request.contextPath}/admin/orders">Orders</a>
                                 </li>
+                                <li>
+                                    <a class="${orderDetailActive}" href="${pageContext.request.contextPath}/admin/orderdetail">Order Detail</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

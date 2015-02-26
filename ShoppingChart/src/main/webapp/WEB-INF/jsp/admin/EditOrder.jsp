@@ -2,12 +2,7 @@
     Document   : product.jsp
     Created on : Feb 24, 2015, 6:36:25 PM
     Author     : gunanto
---%>
-<style>
- .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
-    border: none;
- }
-</style>    
+--%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
@@ -57,19 +52,22 @@
                                             
                                             <label>Tanggal Order</label>
                                             <input class="form-control" placeholder="click to show datepicker"   name="date"   value="${order.date}" readonly="readonly">
-                                            <p class="help-block">Tanggal Order</p>
                                             
                                             <label>BANK</label>
                                             <input value="${order.bank}" name="bank" class="form-control" placeholder="Enter text" readonly="readonly">
-                                            <p class="help-block">Filled with Bank</p>
+
                                             
                                             <label>Nama Orang Transfer</label>
                                             <input value="${order.namaRekening}" name="namaRekening" class="form-control" placeholder="Enter text" readonly="readonly">
-                                            <p class="help-block">Filled with nama rekening</p>
+  
                                             
                                             <label>No Rekening</label>
                                             <input value="${order.noRekening}" name="noRekening" class="form-control" placeholder="Enter text" readonly="readonly">
-                                            <p class="help-block">Filled with No Rekening</p>
+
+                                            
+                                            <label>Username</label>
+                                            <input value="${order.customer.user.username}" name="username" class="form-control" placeholder="Enter text" readonly="readonly">
+
                                             
                                             <label>Status</label>
                                             <select class="span1 form-control" name="status">
