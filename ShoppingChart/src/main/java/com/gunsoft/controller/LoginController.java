@@ -31,7 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author gunanto
  */
 @Controller
-public class LoginCustomerController {
+public class LoginController {
     
     @Autowired
     private ProductService productService;

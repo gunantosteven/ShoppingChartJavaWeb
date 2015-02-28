@@ -23,7 +23,7 @@
     </div>
 	<div class="span6">
 	<div class="pull-right">
-		<a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 0 ] Items in your cart </span> </a> 
+		<a href="${pageContext.request.contextPath}/product_summary"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ ${sessionScope.listOrderDetail.size() ==  null ? 0 : sessionScope.listOrderDetail.size()} ] Items in your cart </span> </a> 
 	</div>
 	</div>
 </div>
