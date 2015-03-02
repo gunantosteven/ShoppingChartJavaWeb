@@ -52,12 +52,22 @@ public class CheckOutController {
     public String index(ModelMap modelMap, HttpServletRequest request) {
         
         Customer c = null;
+        ArrayList<OrderDetail> listOrderDetail = (ArrayList<OrderDetail>) request.getSession().getAttribute("listOrderDetail"); 
         
         if(SecurityContextHolder.getContext().getAuthentication().getName() != null)
+        {
             c = customerService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        }
         
         if(c == null)
+        {
             return "redirect:/login";
+        }
+        
+        if(listOrderDetail == null || listOrderDetail.size() == 0)
+        {
+            return "redirect:/";
+        }
         
         modelMap.addAttribute("latestProducts", productService.getAll(9));
         modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));

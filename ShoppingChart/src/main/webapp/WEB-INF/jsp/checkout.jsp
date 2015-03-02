@@ -48,7 +48,15 @@
 			  </div>
 	</div>
 <!-- Sidebar end=============================================== -->
-		<div class="span9">		
+		<div class="span9">
+                    
+                    <ul class="breadcrumb">
+                    <li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
+                    <li><a href="${pageContext.request.contextPath}/product_summary">SHOPPING CART</a> <span class="divider">/</span></li>
+                    <li class="active"> CHECK OUT</li>
+                    </ul>
+                    <h3>  CHECK OUT <a href="${pageContext.request.contextPath}/" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
+                    <hr class="soft"/>
 			
                     <form class="form-horizontal" action="${pageContext.request.contextPath}/checkout" method="POST" >
                     
