@@ -62,6 +62,23 @@
                                             <label>Description</label>
                                             <input value="${category.description}" name="description" class="form-control" placeholder="Enter text">
                                             <p class="help-block">Description Category</p>
+                                            
+                                            <label>Parent Category</label>
+                                            <select class="form-control" name="parentCategoryUuid">
+                                                    <option value="" >Kosong</option>
+                                                <c:forEach var="category" items="${listCategories}">
+                                                    <c:choose>
+                                                        <c:when test="${category.uuid.equals(requestScope.category.parentCategory.uuid) }">
+                                                            <option value="${category.uuid}" selected>${category.title}</option>
+                                                        </c:when>
+
+                                                        <c:otherwise>
+                                                            <option value="${category.uuid}"  >${category.title}</option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </select>
+                                            <p class="help-block">Select Category</p>
                                         </div>
                                             
                                         <!-- spring security needed -->

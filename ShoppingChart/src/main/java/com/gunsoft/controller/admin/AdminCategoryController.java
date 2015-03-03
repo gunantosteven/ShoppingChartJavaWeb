@@ -8,6 +8,8 @@ package com.gunsoft.controller.admin;
 import com.gunsoft.bean.Category;
 import com.gunsoft.bean.Product;
 import com.gunsoft.service.CategoryService;
+import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,11 +44,12 @@ public class AdminCategoryController {
     public String pageAdd(ModelMap modelMap) {
         modelMap.addAttribute("masterActive", "active");
         modelMap.addAttribute("categoryActive", "active");
+        modelMap.addAttribute("listCategories", categoryService.getAll());
         return "admin/AddCategory";
     }
     
     @RequestMapping(value ="/addcategory", method = RequestMethod.POST)
-    public String addCategory(ModelMap modelMap ,@ModelAttribute Category category) {
+    public String addCategory(ModelMap modelMap ,@ModelAttribute Category category, HttpServletRequest request) {
         try {
             if(categoryService.getByTitle(category.getTitle()) != null)
             {
@@ -60,7 +63,29 @@ public class AdminCategoryController {
             }    
             else
             { 
-                categoryService.saveOrUpdate(category);
+                if(request.getParameter("parentCategoryUuid") != null && !request.getParameter("parentCategoryUuid").trim().equals(""))
+                {
+                    Category parent = categoryService.getById(request.getParameter("parentCategoryUuid"));
+                    if(parent != null)
+                    {
+                        category.setParentCategory(parent);
+                        if(parent.getSubCategories() != null)
+                        {
+                            parent.getSubCategories().add(category);
+                        }
+                        else
+                        {
+                            ArrayList<Category> listCategories = new ArrayList<Category>();
+                            listCategories.add(category);
+                            parent.setSubCategories(listCategories);
+                        }
+                        categoryService.saveOrUpdate(parent);
+                    }
+                }
+                else
+                {
+                    categoryService.saveOrUpdate(category);
+                }
             }
         } catch (Exception e) {
             logger.error(e, e);
@@ -73,11 +98,12 @@ public class AdminCategoryController {
         modelMap.addAttribute("masterActive", "active");
         modelMap.addAttribute("categoryActive", "active");
         modelMap.addAttribute("category", categoryService.getById(uuid));
+        modelMap.addAttribute("listCategories", categoryService.getAll());
         return "admin/EditCategory";
     }
     
     @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.POST)
-    public String editCategory(@PathVariable String uuid, ModelMap modelMap, @ModelAttribute Category category) {
+    public String editCategory(@PathVariable String uuid, ModelMap modelMap, @ModelAttribute Category category, HttpServletRequest request) {
         try {
             if(categoryService.getByTitle(category.getTitle()) != null && !categoryService.getById(uuid).getTitle().equals(category.getTitle()))
             {
@@ -91,7 +117,29 @@ public class AdminCategoryController {
             }
             else
             {
-                categoryService.saveOrUpdate(category);    
+                if(request.getParameter("parentCategoryUuid") != null && !request.getParameter("parentCategoryUuid").trim().equals(""))
+                {
+                    Category parent = categoryService.getById(request.getParameter("parentCategoryUuid"));
+                    if(parent != null)
+                    {
+                        category.setParentCategory(parent);
+                        if(parent.getSubCategories() != null)
+                        {
+                            parent.getSubCategories().add(category);
+                        }
+                        else
+                        {
+                            ArrayList<Category> listCategories = new ArrayList<Category>();
+                            listCategories.add(category);
+                            parent.setSubCategories(listCategories);
+                        }
+                        categoryService.saveOrUpdate(parent);
+                    }
+                }
+                else
+                {
+                    categoryService.saveOrUpdate(category);
+                }    
             }
         } catch (Exception e) {
             logger.error(e, e);

@@ -47,7 +47,7 @@
                                     
                                     <thead>
                                         <tr>
-                                            <th>Code</th>
+                                            <th>Parent Title</th>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th>Action</th>
@@ -57,7 +57,7 @@
                                     <tbody>
                                         <c:forEach var="category" items="${listCategories}">
                                             <tr class="odd gradeX">
-                                                <td>${category.code}</td>
+                                                <td><a href="${pageContext.request.contextPath}/admin/categories/detail/${category.parentCategory.uuid}">${category.parentCategory.title}</a></td>
                                                 <td>${category.title}</td>
                                                 <td>${category.description}</td>
                                                 <td>
