@@ -12,6 +12,7 @@ import com.gunsoft.bean.UserRole;
 import com.gunsoft.service.AddressService;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.CustomerService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.MyUserDetailsService;
 import com.gunsoft.service.ProductService;
 import java.beans.PropertyEditorSupport;
@@ -49,6 +50,8 @@ public class RegisterController {
     @Autowired
     private CustomerService customerService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String page(ModelMap modelMap, @RequestParam String email) {
@@ -59,7 +62,7 @@ public class RegisterController {
         }
         
         modelMap.addAttribute("latestProducts", productService.getAll(9));
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         modelMap.addAttribute("email", email);
         return "register";
     }
@@ -94,7 +97,7 @@ public class RegisterController {
         }
         
         modelMap.addAttribute("latestProducts", productService.getAll(9));
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         return "redirect:/login";
     }
     

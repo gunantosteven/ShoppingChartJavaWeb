@@ -6,7 +6,9 @@
 package com.gunsoft.controller;
 
 import com.gunsoft.bean.Category;
+import com.gunsoft.bean.ItemCategory;
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,13 +33,15 @@ public class CategoryController {
     @Autowired
     private ProductService productService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
     @RequestMapping(value ="/{code}", method = RequestMethod.GET)
     public String index(ModelMap modelMap, @PathVariable String code, @RequestParam("page") Integer page) {
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         Category category = categoryService.getByCode(code);
-        modelMap.addAttribute("amountCategory", categoryService.getCategoryCount(category));
-        modelMap.addAttribute("category", category);
-        modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, category, page));
+        modelMap.addAttribute("amountCategory", itemCategoryService.getAmountByCategory(category));
+        modelMap.addAttribute("itemCategoriesByCategory", itemCategoryService.getAllByCategory(6, category, page));
         return "category";
     }
 }

@@ -6,6 +6,7 @@
 package com.gunsoft.controller;
 
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +28,9 @@ public class SearchController {
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(ModelMap modelMap, @RequestParam("titleProduct") String titleProduct, @RequestParam("codeCategory") String codeCategory) {
         if(codeCategory.equals("all"))
@@ -37,7 +41,7 @@ public class SearchController {
         {
             modelMap.addAttribute("productsfound", productService.getAllByCategoryAndTitleProduct("%" + titleProduct + "%", categoryService.getByCode(codeCategory), 9));
         }
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         return "search";
     }
 }

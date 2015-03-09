@@ -17,6 +17,7 @@
     <mvc:resources mapping="/font-awesome/**" location="/font-awesome/" />
     <mvc:resources mapping="/bootstrap/**" location="/bootstrap/" />
     <mvc:resources mapping="/themes/**" location="/themes/" />
+    <mvc:resources mapping="/jqwidgets/**" location="/jqwidgets/" />
     <mvc:resources mapping="/~PSD/**" location="/~PSDs/" />
     
     <context:component-scan base-package="com.gunsoft.controller" />

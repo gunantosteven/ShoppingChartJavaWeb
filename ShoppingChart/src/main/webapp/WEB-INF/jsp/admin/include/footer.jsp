@@ -16,3 +16,14 @@
         
         <!-- Bootstrap Bootstrap JavaScript -->
         <script src="${pageContext.request.contextPath}/js/bootstrap-datepicker.js"></script>
+        
+        <!-- http://jsfiddle.net/n5jz0zk5/ -->
+        <!-- <script src="${pageContext.request.contextPath}/jqwidgets/jqx-all.js"></script> -->
+        
+        <!-- http://www.jqwidgets.com/ -->
+        <script type="text/javascript" src="${pageContext.request.contextPath}/jqwidgets/jqxcore.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/jqwidgets/jqxbuttons.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/jqwidgets/jqxscrollbar.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/jqwidgets/jqxpanel.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/jqwidgets/jqxtree.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/jqwidgets/jqxcheckbox.js"></script>

@@ -4,9 +4,12 @@
  */
 package com.gunsoft.controller;
 
+import com.gunsoft.bean.ItemCategory;
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,18 +34,21 @@ public class IndexController {
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(ModelMap modelMap, HttpServletRequest request) {
 
         modelMap.addAttribute("latestProducts", productService.getAll(9));
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         
         return "index";
     }
     
     @RequestMapping(value = "/404", method = RequestMethod.GET)
     public String getPages(ModelMap modelMap) {
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         return "404";
     }
     

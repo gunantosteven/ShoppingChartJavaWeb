@@ -8,6 +8,7 @@ package com.gunsoft.controller;
 import com.gunsoft.bean.Order;
 import com.gunsoft.bean.OrderDetail;
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.OrderDetailService;
 import com.gunsoft.service.OrderService;
 import com.gunsoft.service.ProductService;
@@ -41,6 +42,9 @@ public class CustomerController {
     @Autowired
     private OrderDetailService orderDetailService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String index(ModelMap modelMap, HttpServletRequest request) {
         
@@ -58,7 +62,7 @@ public class CustomerController {
         
         String userName = request.getSession().getAttribute("userName").toString();
         
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         modelMap.addAttribute("listOrders", orderService.getByCustomerUsername(userName));
         
         return "customer";
@@ -69,7 +73,7 @@ public class CustomerController {
         
         String userName = request.getSession().getAttribute("userName").toString();
         
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         modelMap.addAttribute("listOrderDetail", orderDetailService.getByIdAndUsername(kode, userName));
         
         return "customerOrderDetail";

@@ -89,7 +89,24 @@
 		<div class="well well-small"><a id="myCart" href="product_summary.html"><img src="${pageContext.request.contextPath}/themes/images/ico-cart.png" alt="cart">0 Items in your cart  <span class="badge badge-warning pull-right">Rp.0</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
                         <c:forEach var="amountCategory" items="${amountCategories}">
-                            <li><a href="${pageContext.request.contextPath}/category/${amountCategory.code}?page=1">${amountCategory.title.toUpperCase()} [${amountCategory.count}]</a></li>
+                                <c:choose>
+                                    <c:when test="${amountCategory.listAmountCategory.size() == 0}">
+                                        <li>
+                                        <a href="${pageContext.request.contextPath}/category/${amountCategory.itemCategory.category.code}?page=1">
+                                        ${amountCategory.itemCategory.category.title.toUpperCase()} [${amountCategory.count}]  
+                                        </a>
+                                    </c:when>    
+                                    <c:otherwise>
+                                        <li class="subMenu"><a>${amountCategory.itemCategory.category.title.toUpperCase()} [${amountCategory.count}]</a>                
+                                        <ul>
+                                            <c:forEach var="subAmountCategory" items="${amountCategory.listAmountCategory}">
+                                                <li><a href="${pageContext.request.contextPath}/category/${subAmountCategory.itemCategory.category.code}?page=1"><i class="icon-chevron-right"></i>${subAmountCategory.itemCategory.category.title.toUpperCase()} ( ${subAmountCategory.count} )</a></li>
+                                            </c:forEach>
+                                        </ul> 
+                                        </li>
+                                    </c:otherwise>        
+                                </c:choose>
+                                  
                         </c:forEach>
 		</ul>
 		<br/>

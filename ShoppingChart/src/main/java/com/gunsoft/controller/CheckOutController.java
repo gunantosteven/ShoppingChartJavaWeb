@@ -12,6 +12,7 @@ import com.gunsoft.bean.OrderDetail;
 import com.gunsoft.bean.Status;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.CustomerService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.OrderService;
 import com.gunsoft.service.ProductService;
 import java.math.BigDecimal;
@@ -48,6 +49,9 @@ public class CheckOutController {
     @Autowired
     private OrderService orderService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
     @RequestMapping(value = "/checkout",method = RequestMethod.GET)
     public String index(ModelMap modelMap, HttpServletRequest request) {
         
@@ -70,7 +74,7 @@ public class CheckOutController {
         }
         
         modelMap.addAttribute("latestProducts", productService.getAll(9));
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         modelMap.addAttribute("customer", c);
         
         return "checkout";
@@ -104,7 +108,7 @@ public class CheckOutController {
             Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         modelMap.addAttribute("customer", c);
         //  listOrderDetail to null
         request.getSession().setAttribute("listOrderDetail", null);

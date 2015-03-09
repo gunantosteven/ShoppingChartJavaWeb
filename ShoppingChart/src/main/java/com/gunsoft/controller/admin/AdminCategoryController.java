@@ -98,7 +98,7 @@ public class AdminCategoryController {
         modelMap.addAttribute("masterActive", "active");
         modelMap.addAttribute("categoryActive", "active");
         modelMap.addAttribute("category", categoryService.getById(uuid));
-        modelMap.addAttribute("listCategories", categoryService.getAll());
+        modelMap.addAttribute("listParentCategories", categoryService.getAllParent());
         return "admin/EditCategory";
     }
     

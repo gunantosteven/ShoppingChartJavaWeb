@@ -28,6 +28,10 @@
 
     <!-- Sendiri CSS -->
     <link href="${pageContext.request.contextPath}/css/sendiri.css" rel="stylesheet">
+    
+    <!-- http://www.jqwidgets.com/ -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/jqwidgets/styles/jqx.summer.css" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -6,6 +6,7 @@
 package com.gunsoft.controller;
 
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,14 @@ public class ForgetPassController {
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
     @RequestMapping(value = "/forgetpass", method = RequestMethod.GET)
     public String index(ModelMap modelMap, HttpServletRequest request) {
 
         modelMap.addAttribute("latestProducts", productService.getAll(9));
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
 
         return "forgetpass";
     }

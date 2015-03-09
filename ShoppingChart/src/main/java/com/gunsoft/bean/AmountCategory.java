@@ -6,39 +6,42 @@
 package com.gunsoft.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
  * @author gunanto
  */
 public class AmountCategory implements Serializable  {
-    private String title;
-    private String code;
+    private ItemCategory itemCategory;
     private Long count;
+    private List<AmountCategory> listAmountCategory;
 
     public AmountCategory() {
     }
 
-    public AmountCategory(String title, String code, Long count) {
-        this.title = title;
-        this.code = code;
+    public AmountCategory(ItemCategory itemCategory, Long count, List<AmountCategory> listAmountCategory) {
+        this.itemCategory = itemCategory;
         this.count = count;
+        this.listAmountCategory = listAmountCategory;
     }
 
-    public String getCode() {
-        return code;
+    
+
+    public List<AmountCategory> getListAmountCategory() {
+        return listAmountCategory;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setListAmountCategory(List<AmountCategory> listAmountCategory) {
+        this.listAmountCategory = listAmountCategory;
     }
     
-    public String getTitle() {
-        return title;
+    public ItemCategory getItemCategory() {
+        return itemCategory;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
+   
+    public void setItemCategory(ItemCategory itemCategory) {
+        this.itemCategory = itemCategory;
     }
 
     public Long getCount() {

@@ -26,7 +26,24 @@
 		<div class="well well-small"><a id="myCart" href="product_summary.html"><img src="${pageContext.request.contextPath}/themes/images/ico-cart.png" alt="cart">0 Items in your cart  <span class="badge badge-warning pull-right">Rp.0</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<c:forEach var="amountCategory" items="${amountCategories}">
-                            <li><a href="${pageContext.request.contextPath}/category/${amountCategory.code}?page=1">${amountCategory.title.toUpperCase()} [${amountCategory.count}]</a></li>
+                                <c:choose>
+                                    <c:when test="${amountCategory.listAmountCategory.size() == 0}">
+                                        <li>
+                                        <a href="${pageContext.request.contextPath}/category/${amountCategory.itemCategory.category.code}?page=1">
+                                        ${amountCategory.itemCategory.category.title.toUpperCase()} [${amountCategory.count}]  
+                                        </a>
+                                    </c:when>    
+                                    <c:otherwise>
+                                        <li class="subMenu"><a>${amountCategory.itemCategory.category.title.toUpperCase()} [${amountCategory.count}]</a>                
+                                        <ul>
+                                            <c:forEach var="subAmountCategory" items="${amountCategory.listAmountCategory}">
+                                                <li><a href="${pageContext.request.contextPath}/category/${subAmountCategory.itemCategory.category.code}?page=1"><i class="icon-chevron-right"></i>${subAmountCategory.itemCategory.category.title.toUpperCase()} ( ${subAmountCategory.count} )</a></li>
+                                            </c:forEach>
+                                        </ul> 
+                                        </li>
+                                    </c:otherwise>        
+                                </c:choose>
+                                  
                         </c:forEach>
 		</ul>
 		<br/>
@@ -51,9 +68,9 @@
 	<div class="span9">
     <ul class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
-		<li class="active">${amountCategory.title.toUpperCase()} Products</li>
+		<li class="active">${amountCategory.itemCategory.category.title.toUpperCase()} Products</li>
     </ul>
-	<h3> ${amountCategory.title.toUpperCase()} Products <small class="pull-right"> ${amountCategory.count} products are available </small></h3>	
+	<h3> ${amountCategory.itemCategory.category.title.toUpperCase()} Products <small class="pull-right"> ${amountCategory.count} products are available </small></h3>	
 	<hr class="soft"/>
 	<p>
 		 ${category.description}
@@ -78,33 +95,33 @@
 <br class="clr"/>
 <div class="tab-content">
 	<div class="tab-pane" id="listView">
-		<c:forEach var="product" items="${productsByCategory}">
+		<c:forEach var="itemCategory" items="${itemCategoriesByCategory}">
 				<div class="row">	  
 					<div class="span2">
                                             <div class="images">
-						<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
+						<img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/>
 					
                                             </div>
                                         </div>        
 					<div class="span4">
 						<h3>New | Available</h3>				
 						<hr class="soft"/>
-						<h5>${product.title} </h5>
+						<h5>${itemCategory.product.title} </h5>
 						<p>
-						${product.descriptionFull}
+						${itemCategory.product.descriptionFull}
 						</p>
-						<a class="btn btn-small pull-right" href="${pageContext.request.contextPath}/product/${product.code}">View Details</a>
+						<a class="btn btn-small pull-right" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}">View Details</a>
 						<br class="clr"/>
 					</div>
 					<div class="span3 alignR">
 					<form class="form-horizontal qtyFrm">
-					<h3> ${product.getRupiahFormat()}</h3>
+					<h3> ${itemCategory.product.getRupiahFormat()}</h3>
 					<label class="checkbox">
 						<input type="checkbox">  Adds product to compair
 					</label><br/>
 					<div class="btn-group">
 					  <a href="${pageContext.request.contextPath}/contact" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
-					  <a href="${pageContext.request.contextPath}/product/${product.code}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+					  <a href="${pageContext.request.contextPath}/product/${itemCategory.product.code}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
 					 </div>
 						</form>
 					</div>
@@ -115,16 +132,16 @@
 
 	<div class="tab-pane  active" id="blockView">
 		<ul class="thumbnails">
-			<c:forEach var="product" items="${productsByCategory}">
+			<c:forEach var="itemCategory" items="${itemCategoriesByCategory}">
 					<li class="span3">
 					  <div class="thumbnail">
-                                              <a href="${pageContext.request.contextPath}/product/${product.code}"><div class="images"><img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/></div></a>
+                                              <a href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"><div class="images"><img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/></div></a>
 						<div class="caption">
-						  <h5>${product.category.title.toUpperCase()}</h5>
+						  <h5>${itemCategory.product.title.toUpperCase()}</h5>
 						  <p> 
-							${product.description}
+							${itemCategory.product.description}
 						  </p>
-						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
+						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${itemCategory.product.getRupiahFormat()}</a></h4>
 						</div>
 					  </div>
 					</li>
@@ -139,7 +156,7 @@
 			<ul>
 			<li><a href="#">&lsaquo;</a></li>
                         <c:forEach var="i" begin="1" end="${amountCategory.count/6 == 1 ? amountCategory.count/6 : amountCategory.count/6+1}">
-                            <li><a href="${pageContext.request.contextPath}/products/${amountCategory.title}?page=${i}">${i}</a></li>
+                            <li><a href="${pageContext.request.contextPath}/products/${amountCategory.itemCategory.category.title}?page=${i}">${i}</a></li>
                         </c:forEach>
 			<li><a href="#">&rsaquo;</a></li>
 			</ul>

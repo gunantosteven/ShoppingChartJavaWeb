@@ -66,14 +66,16 @@
                                             <label>Parent Category</label>
                                             <select class="form-control" name="parentCategoryUuid">
                                                     <option value="" >Kosong</option>
-                                                <c:forEach var="category" items="${listCategories}">
+                                                <c:forEach var="category" items="${listParentCategories}">
                                                     <c:choose>
                                                         <c:when test="${category.uuid.equals(requestScope.category.parentCategory.uuid) }">
                                                             <option value="${category.uuid}" selected>${category.title}</option>
                                                         </c:when>
 
                                                         <c:otherwise>
-                                                            <option value="${category.uuid}"  >${category.title}</option>
+                                                            <c:if test="${!category.uuid.equals(requestScope.category.uuid) }">
+                                                                <option value="${category.uuid}"  >${category.title}</option>
+                                                            </c:if>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </c:forEach>

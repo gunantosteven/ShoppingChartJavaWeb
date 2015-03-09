@@ -50,9 +50,15 @@ public class CategoryService extends BaseService<Category> {
         return (List<Category>) sessionFactory.getCurrentSession().createQuery("from Category").list();
     }
     
-    public List<AmountCategory> getCategoryCount(int limit) {
-        return (List<AmountCategory>) sessionFactory.getCurrentSession().createQuery("select c.code as code, c.title as title, COUNT(c.title) as count from Product p join p.category c group by c.title")
-                .setMaxResults(limit)
+    @Transactional(readOnly=true)
+    public List<Category> getAllParent() {
+        return (List<Category>) sessionFactory.getCurrentSession().createQuery("from Category c where c.parentCategory is null").list();
+    }
+    
+    
+    
+    public List<AmountCategory> getCategoryParentCount() {
+        return (List<AmountCategory>) sessionFactory.getCurrentSession().createQuery("select c as category, COUNT(c.title) as count from Product p join p.category c group by c.title")
                 .setResultTransformer(
                         Transformers.aliasToBean(AmountCategory.class))
                 .list();

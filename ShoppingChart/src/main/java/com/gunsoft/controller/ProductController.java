@@ -7,6 +7,7 @@ package com.gunsoft.controller;
 
 import com.gunsoft.bean.Product;
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,15 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
     @RequestMapping(value ="/{code}", method = RequestMethod.GET)
     public String pageEdit(ModelMap modelMap, @PathVariable String code) {
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
         Product product = productService.getByCode(code);
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, product.getCategory()));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         return "productDetails";
     }
 }

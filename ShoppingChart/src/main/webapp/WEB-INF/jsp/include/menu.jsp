@@ -40,8 +40,8 @@
                     <input id="titleProduct" class="titleProduct" name="titleProduct" type="text" />
                     <select class="srchTxt" name="codeCategory">
                       <option value="all">All</option>
-                      <c:forEach var="category" items="${amountCategories}">
-                          <option value="${category.code}" >${fn:toUpperCase(category.title)} </option>
+                      <c:forEach var="amountCategory" items="${amountCategories}">
+                          <option value="${amountCategory.itemCategory.category.code}" >${fn:toUpperCase(amountCategory.itemCategory.category.title)} </option>
                       </c:forEach>
                   </select> 
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>

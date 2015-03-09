@@ -7,6 +7,7 @@ package com.gunsoft.controller;
 
 import com.gunsoft.bean.OrderDetail;
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -29,12 +30,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  */
 @Controller
 @SessionAttributes("totalPrice")
-public class ProductSumarryController {
+public class ProductSummaryController {
     @Autowired
     private ProductService productService;
     
     @Autowired
     private CategoryService categoryService;
+    
+    @Autowired
+    private ItemCategoryService itemCategoryService;
     
     @RequestMapping(value = "/product_summary", method = RequestMethod.GET)
     public String index(ModelMap modelMap, HttpServletRequest request) {
@@ -55,7 +59,7 @@ public class ProductSumarryController {
         
 
         modelMap.addAttribute("latestProducts", productService.getAll(9));
-        modelMap.addAttribute("amountCategories", categoryService.getCategoryCount(6));
+        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         modelMap.addAttribute("totalPrice", price);
         return "product_summary";
     }

@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,7 +47,7 @@
                                             <strong>Warning !</strong> ${error}
                                         </div>
                                     </c:if> 
-                                    <form role="form" action="${pageContext.request.contextPath}/admin/products/addproduct?${_csrf.parameterName}=${_csrf.token} " method="POST" enctype="multipart/form-data">
+                                    <form action="${pageContext.request.contextPath}/admin/products/addproduct?${_csrf.parameterName}=${_csrf.token}"  id="newProductForm">
                                         <div class="form-group">
                                             <label>Title</label>
                                             <input name="title" class="form-control" placeholder="Enter text">
@@ -68,12 +69,15 @@
                                             </select>
                                             <p class="help-block">Select Category</p>
                                             
+                                            <div id='jqxTree'>
+                                            </div>
+                                            
                                             <label>Code</label>
                                             <input name="code" class="form-control" placeholder="Enter text">
                                             <p class="help-block">Product Code</p>
                                             
                                             <label>Image</label>
-                                            <input name="img" type="file">
+                                            <input id="img" name="img" type="file">
                                             <p class="help-block">Image Product</p>
                                             
                                             <label>Price</label>
@@ -81,12 +85,13 @@
                                             <p class="help-block">Product Price</p>
                                         </div>
                                         
-                                        <!-- spring security needed -->
-                                        <input type="hidden" name="${_csrf.parameterName}"
-                                        value="${_csrf.token}" />
+                                        <input type='hidden' id="categories" name="categories" value="tidak bisa"/>
+                                        
+                                        <input type="button" style="margin: 10px;" id="jqxbutton" value="Get the checked items" />
                                         
                                         <button type="submit" class="btn btn-default">Submit Button</button>
-                                    </form>    
+                                    </form>
+    
                                 </div>
                             </div>
                         </div>
@@ -101,4 +106,74 @@
         <jsp:include page="include/footer.jsp" />
         
     </body>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var source = [
+                <c:forEach var="category" varStatus="loop" items="${listCategories}" >
+                    { label: "${category.title}", value: "${category.uuid}", expanded: true, items: [
+                        <c:forEach var="subCategory" varStatus="loop" items="${category.subCategories}">
+                               { label: "${subCategory.title}", value: "${subCategory.uuid}" }<c:if test="${!loop.last}">,</c:if>     
+                        </c:forEach>
+                    ]
+                    }<c:if test="${!loop.last}">,</c:if>     
+                </c:forEach>            
+            ];
+            // Create jqxTree.
+            $('#jqxTree').jqxTree({checkboxes: true, source: source, height: '300px', width: '300px' });
+            
+            $('#jqxbutton').click(function () {
+                var str = "";
+                var items = $('#jqxTree').jqxTree('getCheckedItems');
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    str += item.value + ",";
+                }
+                alert("The checked items are " + str);
+            });
+            
+            $('#newProductForm').submit(function(e) {
+                e.preventDefault();
+                var $form = $(this);
+                
+                var str = "";
+                var items = $('#jqxTree').jqxTree('getCheckedItems');
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    if(i === items.length - 1)
+                    {
+                        str += item.value;
+                        break;
+                    }
+                    str += item.value + ",";
+                }
+                
+                $("#categories").attr("value", str);
+                
+                
+                $.ajax({
+                    // url can be obtained via the form action attribute passed to the JSP.
+                    url: $form.attr("action"),
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: new FormData($form[0]),
+                    type: 'POST',
+                    statusCode: {
+                        404: function() {
+                            alert("Product not found");
+                        },
+                        500: function() {
+                            alert("Failed to update Product");
+                        }
+                    },
+                    success: function() {
+                        alert("Success");
+                        location.href = "${pageContext.request.contextPath}/admin/products";
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
 </html>

@@ -6,6 +6,7 @@
 package com.gunsoft.controller;
 
 import com.gunsoft.service.CategoryService;
+import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,9 @@ public class LoginController {
     @Autowired
     private CategoryService categoryService;
     
+    @Autowired
+    private ItemCategoryService itemCategoryService;
+    
         @RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
@@ -54,7 +58,7 @@ public class LoginController {
 		}
 		model.setViewName("login");
                 
-                model.addObject("amountCategories", categoryService.getCategoryCount(6));
+                model.addObject("amountCategories", itemCategoryService.getAllAmountParentCategory());
                 
 		return model;
 
