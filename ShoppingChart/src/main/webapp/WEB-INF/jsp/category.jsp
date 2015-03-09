@@ -53,7 +53,7 @@
 			<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
 			<div class="caption">
 			  <h5>${product.title}</h5>
-				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
+				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/addcart/${product.code}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
 			</div>
 		  </div><br/>
                 </c:forEach>
@@ -120,7 +120,7 @@
 						<input type="checkbox">  Adds product to compair
 					</label><br/>
 					<div class="btn-group">
-					  <a href="${pageContext.request.contextPath}/contact" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+					  <a href="${pageContext.request.contextPath}/addcart/${itemCategory.product.code}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
 					  <a href="${pageContext.request.contextPath}/product/${itemCategory.product.code}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
 					 </div>
 						</form>
@@ -141,7 +141,7 @@
 						  <p> 
 							${itemCategory.product.description}
 						  </p>
-						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${itemCategory.product.getRupiahFormat()}</a></h4>
+						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/addcart/${itemCategory.product.code}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${itemCategory.product.getRupiahFormat()}</a></h4>
 						</div>
 					  </div>
 					</li>
