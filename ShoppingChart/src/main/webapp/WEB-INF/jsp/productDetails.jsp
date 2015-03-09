@@ -48,12 +48,12 @@
 		</ul>
 		<br/>
                 <h4>Recommended</h4>
-                <c:forEach var="product" items="${productsByCategory}" begin="0" end="1" step="1">
+                <c:forEach var="itemCategory" items="${recommendedProducts}" begin="0" end="1" step="1">
                     <div class="thumbnail">
-			<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
+			<img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/>
 			<div class="caption">
-			  <h5>${product.title}</h5>
-				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/addcart/${product.code}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
+			  <h5>${itemCategory.product.title}</h5>
+				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/addcart/${itemCategory.product.code}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${itemCategory.product.getRupiahFormat()}</a></h4>
 			</div>
                     </div><br/>
                 </c:forEach>
@@ -68,21 +68,21 @@
 	<div class="span9">
     <ul class="breadcrumb">
     <li><a href="${pageContext.request.contextPath}/">Home</a> <span class="divider">/</span></li>
-    <li><a href="${pageContext.request.contextPath}/products/${product.category.title}?page=1">${product.category.title.toUpperCase()} Products</a> <span class="divider">/</span></li>
-    <li class="active">${product.title} Details</li>
+    <li><a href="${pageContext.request.contextPath}/products/${itemCategory.category.title}?page=1">${itemCategory.category.title.toUpperCase()} Products</a> <span class="divider">/</span></li>
+    <li class="active">${itemCategory.product.title} Details</li>
     </ul>	
 	<div class="row">	  
 			<div id="gallery" class="span3">
-            <a href="data:image/jpeg;base64,${product.getEncodedImageString()}" title="Fujifilm FinePix S2950 Digital Camera">
-				<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" style="width:100%" alt="Fujifilm FinePix S2950 Digital Camera"/>
+            <a href="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" title="Fujifilm FinePix S2950 Digital Camera">
+				<img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" style="width:100%" alt="Fujifilm FinePix S2950 Digital Camera"/>
             </a>
 			<div id="differentview" class="moreOptopm carousel slide">
                 <div class="carousel-inner">
                   <div class="item active">
-                   <a href="data:image/jpeg;base64,${product.getEncodedImageString()}"> <img style="width:29%" src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/></a>
+                   <a href="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}"> <img style="width:29%" src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/></a>
                   </div>
                   <div class="item">
-                   <a href="data:image/jpeg;base64,${product.getEncodedImageString()}" > <img style="width:29%" src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/></a>
+                   <a href="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" > <img style="width:29%" src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/></a>
                   </div>
                 </div>
               <!--  
@@ -103,12 +103,12 @@
 			</div>
 			</div>
 			<div class="span6">
-				<h3>${product.title}  </h3>
-				<small>- ${product.description}</small>
+				<h3>${itemCategory.product.title}  </h3>
+				<small>- ${itemCategory.product.description}</small>
 				<hr class="soft"/>
-                                <form class="form-horizontal qtyFrm" action="${pageContext.request.contextPath}/contact" method="GET">
+                                <form class="form-horizontal qtyFrm" action="${pageContext.request.contextPath}/addcart/${itemCategory.product.code}" method="GET">
 				  <div class="control-group">
-					<label class="control-label"><span>${product.getRupiahFormat()}</span></label>
+					<label class="control-label"><span>${itemCategory.product.getRupiahFormat()}</span></label>
 					<div class="controls">
 					<input type="number" class="span1" placeholder="Qty."/>
 					  <button type="submit" class="btn btn-large btn-primary pull-right" > Add to cart <i class=" icon-shopping-cart"></i></button>
@@ -121,7 +121,7 @@
 				
 				<hr class="soft clr"/>
 				<p>
-				${product.descriptionFull}
+				${itemCategory.product.descriptionFull}
 				
 				</p>
 				<a class="btn btn-small pull-right" href="#detail">More Details</a>
@@ -132,7 +132,7 @@
 			
 			<div class="span9">
             <ul id="productDetail" class="nav nav-tabs">
-              <li class="active"><a href="#home" data-toggle="tab">${product.title} Details</a></li>
+              <li class="active"><a href="#home" data-toggle="tab">${itemCategory.product.title} Details</a></li>
               <li><a href="#profile" data-toggle="tab">Related Products</a></li>
             </ul>
             <div id="myTabContent" class="tab-content">
@@ -149,32 +149,32 @@
 		<hr class="soft"/>
 		<div class="tab-content">
 			<div class="tab-pane" id="listView">
-                            <c:forEach var="product" items="${productsByCategory}">
+                            <c:forEach var="itemCategory" items="${recommendedProducts}">
 				<div class="row">	  
 					<div class="span2">
                                             <div class="images">
-						<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
+						<img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/>
 					
                                             </div>
                                         </div>        
 					<div class="span4">
 						<h3>New | Available</h3>				
 						<hr class="soft"/>
-						<h5>${product.title} </h5>
+						<h5>${itemCategory.product.title} </h5>
 						<p>
-						${product.descriptionFull}
+						${itemCategory.product.descriptionFull}
 						</p>
-						<a class="btn btn-small pull-right" href="${pageContext.request.contextPath}/product/${product.code}">View Details</a>
+						<a class="btn btn-small pull-right" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}">View Details</a>
 						<br class="clr"/>
 					</div>
 					<div class="span3 alignR">
 					<form class="form-horizontal qtyFrm">
-					<h3> ${product.getRupiahFormat()}</h3>
+					<h3> ${itemCategory.product.getRupiahFormat()}</h3>
 					<label class="checkbox">
 						<input type="checkbox">  Adds product to compair
 					</label><br/>
 					<div class="btn-group">
-					  <a href="${pageContext.request.contextPath}/contact" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+					  <a href="${pageContext.request.contextPath}/addcart/${itemCategory.product.code}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
 					  <a href="product_details.html" class="btn btn-large"><i class="icon-zoom-in"></i></a>
 					 </div>
 						</form>
@@ -188,16 +188,16 @@
 		</div>
 			<div class="tab-pane active" id="blockView">
 				<ul class="thumbnails">
-                                    <c:forEach var="product" items="${productsByCategory}">
+                                    <c:forEach var="itemCategory" items="${recommendedProducts}">
 					<li class="span3">
 					  <div class="thumbnail">
-                                              <a href="${pageContext.request.contextPath}/product/${product.code}"><div class="images"><img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/></div></a>
+                                              <a href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"><div class="images"><img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/></div></a>
 						<div class="caption">
-						  <h5>${product.category.title.toUpperCase()}</h5>
+						  <h5>${itemCategory.product.category.title.toUpperCase()}</h5>
 						  <p> 
-							${product.description}
+							${itemCategory.product.description}
 						  </p>
-						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
+						  <h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/contact">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${itemCategory.product.getRupiahFormat()}</a></h4>
 						</div>
 					  </div>
 					</li>

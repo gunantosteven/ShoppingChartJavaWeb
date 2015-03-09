@@ -8,6 +8,7 @@ package com.gunsoft.service;
 import com.gunsoft.bean.AmountCategory;
 import com.gunsoft.bean.Category;
 import com.gunsoft.bean.ItemCategory;
+import com.gunsoft.bean.Product;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.transform.Transformers;
@@ -94,6 +95,15 @@ public class ItemCategoryService extends BaseService<ItemCategory> {
                 .setMaxResults(limit).list();
     }
     
+    @Transactional(readOnly = true)
+    public List<ItemCategory> getAllByCategory(Integer limit, Category category)
+    {
+        return (List<ItemCategory>) sessionFactory.getCurrentSession().createQuery("from ItemCategory i where i.category = :category")
+                .setParameter("category", category)
+                .setFirstResult(0)
+                .setMaxResults(limit).list();
+    }
+    
     public AmountCategory getAmountByCategory(Category category)
     {
         return  (AmountCategory) sessionFactory.getCurrentSession().
@@ -115,6 +125,12 @@ public class ItemCategoryService extends BaseService<ItemCategory> {
     public ItemCategory getById(String id) {
         return (ItemCategory) sessionFactory.getCurrentSession().createQuery("from ItemCategory where id = :id")
                          .setParameter("id", id).uniqueResult();
+    }
+    
+    @Transactional(readOnly=true)
+    public ItemCategory getByProduct(Product product) {
+        return (ItemCategory) sessionFactory.getCurrentSession().createQuery("from ItemCategory i where i.product = :product group by i.product.title")
+                         .setParameter("product", product).uniqueResult();
     }
 
     @Override

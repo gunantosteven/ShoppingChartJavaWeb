@@ -5,6 +5,7 @@
  */
 package com.gunsoft.controller;
 
+import com.gunsoft.bean.ItemCategory;
 import com.gunsoft.bean.Product;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.ItemCategoryService;
@@ -38,8 +39,9 @@ public class ProductController {
     @RequestMapping(value ="/{code}", method = RequestMethod.GET)
     public String pageEdit(ModelMap modelMap, @PathVariable String code) {
         Product product = productService.getByCode(code);
-        modelMap.addAttribute("product", product);
-        modelMap.addAttribute("productsByCategory", productService.getAllByCategory(6, product.getCategory()));
+        ItemCategory itemCategory = itemCategoryService.getByProduct(product);
+        modelMap.addAttribute("itemCategory", itemCategory);
+        modelMap.addAttribute("recommendedProducts", itemCategoryService.getAllByCategory(6, itemCategory.getCategory()));
         modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         return "productDetails";
     }
