@@ -106,11 +106,11 @@
 				<h3>${itemCategory.product.title}  </h3>
 				<small>- ${itemCategory.product.description}</small>
 				<hr class="soft"/>
-                                <form class="form-horizontal qtyFrm" action="${pageContext.request.contextPath}/addcart/${itemCategory.product.code}" method="GET">
+                                <form class="form-horizontal qtyFrm" action="${pageContext.request.contextPath}/setquantity/${itemCategory.product.code}" method="GET">
 				  <div class="control-group">
 					<label class="control-label"><span>${itemCategory.product.getRupiahFormat()}</span></label>
 					<div class="controls">
-					<input type="number" class="span1" placeholder="Qty."/>
+                                            <input type="number" class="span1" placeholder="Qty." name="quantity"/>
 					  <button type="submit" class="btn btn-large btn-primary pull-right" > Add to cart <i class=" icon-shopping-cart"></i></button>
 					</div>
 				  </div>

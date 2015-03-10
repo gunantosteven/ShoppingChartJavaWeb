@@ -77,7 +77,6 @@ public class CartController {
         return "redirect:/product_summary";
     }
     
-    
     @RequestMapping(value = "/deletecart/{itemCode}", method = RequestMethod.GET)
     public String deleteCart(ModelMap modelMap, HttpServletRequest request, @PathVariable String itemCode ) {
         
@@ -142,8 +141,6 @@ public class CartController {
         if(listOrderDetail == null || listOrderDetail.size() == 0)
         {
             listOrderDetail = new ArrayList<OrderDetail>();
-            
-            return "redirect:/product_summary";
         }
         
         Iterator<OrderDetail> itr= listOrderDetail.iterator();    
@@ -157,6 +154,20 @@ public class CartController {
                 break;
             }
         } 
+        
+        if(check == false)
+        {
+            OrderDetail orderDetail = new OrderDetail();
+            Product product = productService.getByCode(itemCode);
+            if(product != null)
+            {
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(quantity);
+                orderDetail.setPrice(product.getPrice());
+
+                listOrderDetail.add(orderDetail);
+            }
+        }
         
         modelMap.addAttribute("listOrderDetail", listOrderDetail);
         
