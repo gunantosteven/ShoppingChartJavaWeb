@@ -48,12 +48,12 @@
 		</ul>
 		<br/>
                 <h4>Recommended</h4>
-                <c:forEach var="product" items="${productsByCategory}" begin="0" end="1" step="1">
+                <c:forEach var="itemCategory" items="${recommendedProducts}" begin="0" end="1" step="1">
                     <div class="thumbnail">
-			<img src="data:image/jpeg;base64,${product.getEncodedImageString()}" alt=""/>
+			<img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/>
 			<div class="caption">
-			  <h5>${product.title}</h5>
-				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/addcart/${product.code}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${product.getRupiahFormat()}</a></h4>
+			  <h5>${itemCategory.product.title}</h5>
+				<h4 style="text-align:center"><a class="btn" href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="${pageContext.request.contextPath}/addcart/${itemCategory.product.code}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">${itemCategory.product.getRupiahFormat()}</a></h4>
 			</div>
 		  </div><br/>
                 </c:forEach>

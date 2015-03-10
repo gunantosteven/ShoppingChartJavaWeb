@@ -42,6 +42,7 @@ public class CategoryController {
         Category category = categoryService.getByCode(code);
         modelMap.addAttribute("amountCategory", itemCategoryService.getAmountByCategory(category));
         modelMap.addAttribute("itemCategoriesByCategory", itemCategoryService.getAllByCategory(6, category, page));
+        modelMap.addAttribute("recommendedProducts", itemCategoryService.getAllByCategory(6, category));
         return "category";
     }
 }
