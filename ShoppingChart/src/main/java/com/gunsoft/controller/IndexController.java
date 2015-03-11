@@ -45,12 +45,4 @@ public class IndexController {
         
         return "index";
     }
-    
-    @RequestMapping(value = "/404", method = RequestMethod.GET)
-    public String getPages(ModelMap modelMap) {
-        modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
-        return "404";
-    }
-    
-    
 }
