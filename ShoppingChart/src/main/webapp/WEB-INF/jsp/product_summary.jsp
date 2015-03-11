@@ -74,7 +74,7 @@
                     <h3>  SHOPPING CART [ <small>${sessionScope.listOrderDetail.size() ==  null ? 0 : sessionScope.listOrderDetail.size()} Item(s) </small>]<a href="${pageContext.request.contextPath}/" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
                     <hr class="soft"/>
                     <c:choose>
-                        <c:when test="${name != 'anonymousUser'}">
+                        <c:when test="${sessionScope.userName != '' && sessionScope.userName != null}">
                             <table class="table table-bordered" style="display:none;">
                         </c:when>
                         <c:otherwise>
