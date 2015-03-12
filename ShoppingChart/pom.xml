@@ -8,6 +8,18 @@
     <packaging>war</packaging>
 
     <name>ShoppingChart</name>
+    
+    <developers>
+        <developer>
+            <id>stevengunanto</id>
+            <name>Steven Gunanto</name>
+            <email>gunantosteven@gmail.com</email>
+            <url>http://stevengunanto.blogspot.com/</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
