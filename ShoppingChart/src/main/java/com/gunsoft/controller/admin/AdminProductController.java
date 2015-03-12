@@ -168,6 +168,7 @@ public class AdminProductController {
     @RequestMapping(value ="/delete/{uuid}", method = RequestMethod.GET)
     public String delete(@PathVariable String uuid, @ModelAttribute Product product) throws Exception {
         product.setUuid(uuid);
+        itemCategoryService.deleteByProductUuid(uuid);
         productService.delete(product);
         return "redirect:/admin/products";
     }
