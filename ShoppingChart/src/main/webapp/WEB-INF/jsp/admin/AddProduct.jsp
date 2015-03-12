@@ -61,16 +61,9 @@
                                             <textarea name="descriptionFull" class="form-control" rows="3"></textarea>
                                             <p class="help-block">Description Full</p>
                                             
-                                            <label>Category</label>
-                                            <select class="form-control" name="categoryUuid">
-                                                <c:forEach var="category" items="${listCategories}">
-                                                    <option value="${category.uuid}" >${category.title}</option>
-                                                </c:forEach>
-                                            </select>
-                                            <p class="help-block">Select Category</p>
-                                            
                                             <div id='jqxTree'>
                                             </div>
+                                            <p class="help-block">Select Category</p>
                                             
                                             <label>Code</label>
                                             <input name="code" class="form-control" placeholder="Enter text">

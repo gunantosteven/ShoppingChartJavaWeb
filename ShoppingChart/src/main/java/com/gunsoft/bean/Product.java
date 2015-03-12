@@ -53,12 +53,7 @@ public class Product implements java.io.Serializable {
     private String code;
     
     private Long price;
-    
-    @IndexedEmbedded
-    @ManyToOne
-    @JoinColumn(name="CATEGORY_ID")
-    private Category category;
-    
+     
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
     
@@ -68,15 +63,15 @@ public class Product implements java.io.Serializable {
     public Product() {
     }
 
-    public Product(String uuid, String title, String description, String descriptionFull, String code, Long price, Category category, byte[] image) {
+    public Product(String uuid, String title, String description, String descriptionFull, String code, Long price, byte[] image, Date createDate) {
         this.uuid = uuid;
         this.title = title;
         this.description = description;
         this.descriptionFull = descriptionFull;
         this.code = code;
         this.price = price;
-        this.category = category;
         this.image = image;
+        this.createDate = createDate;
     }
 
     public String getEncodedImageString() {
@@ -93,15 +88,7 @@ public class Product implements java.io.Serializable {
     public void setImage(byte[] image) {
         this.image = image;
     }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
+    
     public String getCode() {
         return code;
     }

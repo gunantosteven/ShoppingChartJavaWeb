@@ -131,9 +131,6 @@ public class AdminProductController {
                     else
                         product.setImage(img.getBytes());
 
-                    Category category = categoryService.getById(categoryUuid);
-                    product.setCategory(category);
-
                     product.setCreateDate(new Date());
 
                     productService.saveOrUpdate(product); // Update Product

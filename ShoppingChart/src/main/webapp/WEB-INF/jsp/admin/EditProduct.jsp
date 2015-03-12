@@ -62,25 +62,10 @@
                                             <label>Description Full</label>
                                             <textarea name="descriptionFull" class="form-control" rows="3">${product.descriptionFull}</textarea>
                                             <p class="help-block">Description Full</p>
-                                            
-                                            <label>Category</label>
-                                            <select class="form-control" name="categoryUuid">
-                                                <c:forEach var="category" items="${listCategories}">
-                                                    <c:choose>
-                                                        <c:when test="${category.uuid.equals(product.category.uuid) }">
-                                                            <option value="${category.uuid}" selected>${category.title}</option>
-                                                        </c:when>
-
-                                                        <c:otherwise>
-                                                            <option value="${category.uuid}"  >${category.title}</option>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:forEach>
-                                            </select>
-                                            <p class="help-block">Select Category</p>
-                                            
+ 
                                             <div id='jqxTree'>
                                             </div>
+                                            <p class="help-block">Select Category</p>
                                             
                                             <label>Code</label>
                                             <input value="${product.code}" name="code" class="form-control" placeholder="Enter text">
