@@ -141,7 +141,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="orderDetail" items="${listOrderDetail}">
+                                <c:forEach var="orderDetail" items="${requestScope.listOrderDetail}">
                                     <tr>
                                         <td>${orderDetail.product.title}</td>
                                         <td>${orderDetail.product.category.title}</td>
