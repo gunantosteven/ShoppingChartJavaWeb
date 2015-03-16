@@ -106,7 +106,7 @@
 				<h3>${itemCategory.product.title}  </h3>
 				<small>- ${itemCategory.product.description}</small>
 				<hr class="soft"/>
-                                <form class="form-horizontal qtyFrm" action="${pageContext.request.contextPath}/setquantity/${itemCategory.product.code}" method="GET">
+                                <form id="formProducts" class="form-horizontal qtyFrm" action="${pageContext.request.contextPath}/setquantity/${itemCategory.product.code}">
 				  <div class="control-group">
 					<label class="control-label"><span>${itemCategory.product.getRupiahFormat()}</span></label>
 					<div class="controls">
@@ -219,4 +219,42 @@
     <jsp:include page="include/footer.jsp" />
 <span id="themesBtn"></span>
 </body>
+
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            
+            $('#formProducts').submit(function(e) {
+                e.preventDefault();
+                var $form = $(this);
+                
+                $.ajax({
+                    // url can be obtained via the form action attribute passed to the JSP.
+                    url: $form.attr("action"),
+                    cache: false,
+                    data: $(this).serialize(),
+                    type: 'GET',
+                    statusCode: {
+                        404: function() {
+                            alert("Qty belum diisi");
+                        },
+                        500: function() {
+                            alert("Failed to update Product");
+                        },
+                        400: function() {
+                            alert("Persediaan product tidak cukup untuk memenuhi permintaan Anda");
+                        }
+                    },
+                    success: function() {
+                        alert("Success");
+                        location.href = "${pageContext.request.contextPath}/product_summary";
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+    
+    
+
 </html>

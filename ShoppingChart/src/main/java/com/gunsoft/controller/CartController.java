@@ -15,6 +15,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -135,7 +137,7 @@ public class CartController {
     }
     
     @RequestMapping(value = "/setquantity/{itemCode}", method = RequestMethod.GET)
-    public String setQuantityCart(ModelMap modelMap, HttpServletRequest request, @RequestParam(value = "quantity", required = true) Integer quantity, @PathVariable String itemCode ) {
+    public ResponseEntity<String> setQuantityCart(ModelMap modelMap, HttpServletRequest request, @RequestParam(value = "quantity", required = true) Integer quantity, @PathVariable String itemCode ) {
         ArrayList<OrderDetail> listOrderDetail = (ArrayList<OrderDetail>) request.getSession().getAttribute("listOrderDetail");
         
         if(listOrderDetail == null || listOrderDetail.size() == 0)
@@ -149,6 +151,10 @@ public class CartController {
             OrderDetail od = itr.next();
             if(od.getProduct().getCode().equals(itemCode))
             {
+                if(od.getQuantity() + quantity > od.getProduct().getStock())
+                {
+                    return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+                }
                 od.setQuantity(quantity);
                 check = true;
                 break;
@@ -161,6 +167,11 @@ public class CartController {
             Product product = productService.getByCode(itemCode);
             if(product != null)
             {
+                if(quantity > product.getStock())
+                {
+                    return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+                }
+                
                 orderDetail.setProduct(product);
                 orderDetail.setQuantity(quantity);
                 orderDetail.setPrice(product.getPrice());
@@ -171,7 +182,7 @@ public class CartController {
         
         modelMap.addAttribute("listOrderDetail", listOrderDetail);
         
-        return "redirect:/product_summary";
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
     
     @RequestMapping(value = "/minusquantity/{itemCode}", method = RequestMethod.GET)
