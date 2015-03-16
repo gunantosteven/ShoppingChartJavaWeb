@@ -48,7 +48,6 @@
                                         <tr>
                                             <th>Tanggal</th>
                                             <th>Nama Produk</th>
-                                            <th>Kategori</th>
                                             <th>Kuantitas</th>
                                         </tr>
                                     </thead>
@@ -58,7 +57,6 @@
                                             <tr class="odd gradeX">
                                                 <td>${orderDetail.order.date}</td>
                                                 <td>${orderDetail.product.title}</td>
-                                                <td>${orderDetail.product.category.title}</td>
                                                 <td>${orderDetail.quantity}</td>
                                             </tr>                                           
                                         </c:forEach>

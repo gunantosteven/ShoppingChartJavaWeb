@@ -129,7 +129,6 @@
                                         <thead>
                                             <tr>
                                                 <th>Nama Produk</th>
-                                                <th>Kategori</th>
                                                 <th>Kuantitas</th>
                                                 <th>Harga Satuan</th>
                                                 <th>Total</th>
@@ -139,7 +138,6 @@
                                             <c:forEach var="orderDetail" items="${order.listOrderDetail}">
                                                 <tr>
                                                     <td>${orderDetail.product.title}</td>
-                                                    <td>${orderDetail.product.category.title}</td>
                                                     <td>${orderDetail.quantity}</td>
                                                     <td>${orderDetail.product.price}</td>
                                                     <td>${orderDetail.quantity * orderDetail.product.price}</td>

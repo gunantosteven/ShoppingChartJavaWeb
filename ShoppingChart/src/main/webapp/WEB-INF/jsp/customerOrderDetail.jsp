@@ -136,7 +136,6 @@
                             <thead>
                                 <tr>
                                     <th>Nama Produk</th>
-                                    <th>Kategori</th>
                                     <th>Kuantitas</th>
                                 </tr>
                             </thead>
@@ -144,7 +143,6 @@
                                 <c:forEach var="orderDetail" items="${requestScope.listOrderDetail}">
                                     <tr>
                                         <td>${orderDetail.product.title}</td>
-                                        <td>${orderDetail.product.category.title}</td>
                                         <td>${orderDetail.quantity}</td>
                                     </tr>
                                 </c:forEach>
