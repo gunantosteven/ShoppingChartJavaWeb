@@ -59,11 +59,13 @@ public class Product implements java.io.Serializable {
     
     @Column(updatable = false)
     private Date createDate;
+    
+    private int stock;
 
     public Product() {
     }
 
-    public Product(String uuid, String title, String description, String descriptionFull, String code, Long price, byte[] image, Date createDate) {
+    public Product(String uuid, String title, String description, String descriptionFull, String code, Long price, byte[] image, Date createDate, int stock) {
         this.uuid = uuid;
         this.title = title;
         this.description = description;
@@ -72,6 +74,7 @@ public class Product implements java.io.Serializable {
         this.price = price;
         this.image = image;
         this.createDate = createDate;
+        this.stock = stock;
     }
 
     public String getEncodedImageString() {
@@ -81,6 +84,14 @@ public class Product implements java.io.Serializable {
         return encodedImageString;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
     public byte[] getImage() {
         return image;
     }

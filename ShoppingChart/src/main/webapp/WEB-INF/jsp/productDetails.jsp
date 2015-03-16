@@ -193,7 +193,7 @@
 					  <div class="thumbnail">
                                               <a href="${pageContext.request.contextPath}/product/${itemCategory.product.code}"><div class="images"><img src="data:image/jpeg;base64,${itemCategory.product.getEncodedImageString()}" alt=""/></div></a>
 						<div class="caption">
-						  <h5>${itemCategory.product.category.title.toUpperCase()}</h5>
+						  <h5>${itemCategory.category.title.toUpperCase()}</h5>
 						  <p> 
 							${itemCategory.product.description}
 						  </p>

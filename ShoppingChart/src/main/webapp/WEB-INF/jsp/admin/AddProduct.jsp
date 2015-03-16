@@ -73,8 +73,12 @@
                                             <input id="img" name="img" type="file">
                                             <p class="help-block">Image Product</p>
                                             
+                                            <label>Stock</label>
+                                            <input name="stock" class="form-control" placeholder="Enter Number" type="number">
+                                            <p class="help-block">Stock</p>
+                                            
                                             <label>Price</label>
-                                            <input name="price" class="form-control" placeholder="Enter text" type="number">
+                                            <input name="price" class="form-control" placeholder="Enter Number" type="number">
                                             <p class="help-block">Product Price</p>
                                         </div>
                                         

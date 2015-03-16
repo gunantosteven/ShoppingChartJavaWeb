@@ -76,9 +76,15 @@
                                             <input name="img" type="file" value="${product.image}">
                                             <p class="help-block">Image Product</p>
                                             
+                                            <label>Stock</label>
+                                            <input value="${product.stock}" name="stock" class="form-control" placeholder="Enter text" type="number">
+                                            <p class="help-block">Stock</p>
+                                            
                                             <label>Price</label>
                                             <input value="${product.price}" name="price" class="form-control" placeholder="Enter text" type="number">
                                             <p class="help-block">Product Price</p>
+                                            
+                                            
                                         </div>   
                                          
                                         <input type='hidden' id="categories" name="categories" value="tidak bisa"/>
