@@ -47,8 +47,9 @@
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                 </form>
     <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="${pageContext.request.contextPath}/">Specials Offer</a></li>
-	 <li class=""><a href="${pageContext.request.contextPath}/contact">Cara Pembeliaan</a></li>
+	 <li class=""><a href="${pageContext.request.contextPath}/tawaran">Tawaran Spesial</a></li>
+	 <li class=""><a href="${pageContext.request.contextPath}/pengiriman">Pengiriman</a></li>
+         <li class=""><a href="${pageContext.request.contextPath}/contact">Kontak</a></li>
 	 <li class="">
         <c:choose>
         <c:when test="${sessionScope.userName == '' || sessionScope.userName == null}">
