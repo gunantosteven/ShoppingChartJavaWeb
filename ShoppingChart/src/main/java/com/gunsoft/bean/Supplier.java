@@ -24,7 +24,7 @@ public class Supplier {
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name = "uuid", unique = true)
     private String uuid;
-    
+    @Column(unique = true)
     private String kodeSupplier;
     private String namaSupplier;
     private String alamatSupplier;
