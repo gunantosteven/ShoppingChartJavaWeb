@@ -254,7 +254,10 @@
                                     <a class="${productActive}" href="${pageContext.request.contextPath}/admin/products">Products</a>
                                 </li>
                                 <li>
-                                    <a class="${customerActive}" href="${pageContext.request.contextPath}/admin/customers">Customer</a>
+                                    <a class="${customerActive}" href="${pageContext.request.contextPath}/admin/customers">Customers</a>
+                                </li>
+                                <li>
+                                    <a class="${supplierActive}" href="${pageContext.request.contextPath}/admin/suppliers">Suppliers</a>
                                 </li>
                             </ul>
                         </li>
