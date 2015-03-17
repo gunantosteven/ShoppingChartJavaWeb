@@ -60,6 +60,10 @@ public class Product implements java.io.Serializable {
     @Column(updatable = false)
     private Date createDate;
     
+    @ManyToOne
+    @JoinColumn(name="SUPPLIER_ID")
+    private Supplier supplier;
+    
     private int stock;
 
     public Product() {

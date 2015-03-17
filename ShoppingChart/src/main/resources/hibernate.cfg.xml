@@ -15,5 +15,6 @@
     <mapping class="com.gunsoft.bean.Address"/>
     <mapping class="com.gunsoft.bean.AddressOrder"/>
     <mapping class="com.gunsoft.bean.Customer"/>
+    <mapping class="com.gunsoft.bean.Supplier"/>
   </session-factory>
 </hibernate-configuration>
