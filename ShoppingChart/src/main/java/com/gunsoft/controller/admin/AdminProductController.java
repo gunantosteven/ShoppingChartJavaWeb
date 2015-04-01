@@ -11,6 +11,7 @@ import com.gunsoft.bean.Product;
 import com.gunsoft.service.CategoryService;
 import com.gunsoft.service.ItemCategoryService;
 import com.gunsoft.service.ProductService;
+import com.gunsoft.service.SupplierService;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,6 +46,9 @@ public class AdminProductController {
     @Autowired
     private ItemCategoryService itemCategoryService;
     
+    @Autowired
+    private SupplierService supplierService;
+    
     private Logger logger = Logger.getLogger(this.getClass());
     
     @RequestMapping(method = RequestMethod.GET)
@@ -60,19 +64,23 @@ public class AdminProductController {
         modelMap.addAttribute("masterActive", "active");
         modelMap.addAttribute("productActive", "active");
         modelMap.addAttribute("listCategories", categoryService.getAllParent());
+        modelMap.addAttribute("listSuppliers", supplierService.getAll());
         return "admin/AddProduct";
     }
     
     @RequestMapping(value ="/addproduct", method = RequestMethod.POST)
     public String addProduct(ModelMap modelMap, @ModelAttribute Product product,
             @RequestParam(value = "categoryUuid", required = false) String categoryUuid
+            ,@RequestParam(value = "supplierUuid", required = false) String supplierUuid
             , @RequestParam(value = "img", required = false) MultipartFile img
             , HttpServletRequest request) {
         try {
-            if(productService.getByCode(product.getCode()) == null)
+            if(productService.getByCode(product.getCode()) == null && supplierService.getById(supplierUuid) != null)
             { 
                 product.setImage(img.getBytes());
                 product.setCreateDate(new Date());
+                
+                product.setSupplier(supplierService.getById(supplierUuid));
                 
                 productService.saveOrUpdate(product);
                 

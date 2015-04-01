@@ -183,5 +183,15 @@ public class Product implements java.io.Serializable {
 	    }
 	         
 	    return "Rp." + rupiah;
-	}
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+    
+    
 }

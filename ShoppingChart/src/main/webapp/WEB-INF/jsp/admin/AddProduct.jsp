@@ -80,6 +80,14 @@
                                             <label>Price</label>
                                             <input name="price" class="form-control" placeholder="Enter Number" type="number">
                                             <p class="help-block">Product Price</p>
+                                            
+                                            <label>Suppliers</label>
+                                            <select class="form-control" name="supplierUuid">
+                                                    <option value="" >Kosong</option>
+                                                <c:forEach var="supplier" items="${listSuppliers}">
+                                                    <option value="${supplier.uuid}" selected>${supplier.kodeSupplier} | ${supplier.namaSupplier}</option>
+                                                </c:forEach>
+                                            </select>
                                         </div>
                                         
                                         <input type='hidden' id="categories" name="categories" value="tidak bisa"/>
