@@ -83,9 +83,9 @@
                                             
                                             <label>Suppliers</label>
                                             <select class="form-control" name="supplierUuid">
-                                                    <option value="" >Kosong</option>
+                                                <option value="null" selected  >Tidak Ada</option>
                                                 <c:forEach var="supplier" items="${listSuppliers}">
-                                                    <option value="${supplier.uuid}" selected>${supplier.kodeSupplier} | ${supplier.namaSupplier}</option>
+                                                    <option value="${supplier.uuid}">${supplier.kodeSupplier} | ${supplier.namaSupplier}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>

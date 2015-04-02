@@ -75,12 +75,13 @@ public class AdminProductController {
             , @RequestParam(value = "img", required = false) MultipartFile img
             , HttpServletRequest request) {
         try {
-            if(productService.getByCode(product.getCode()) == null && supplierService.getById(supplierUuid) != null)
+            if(productService.getByCode(product.getCode()) == null)
             { 
                 product.setImage(img.getBytes());
                 product.setCreateDate(new Date());
                 
-                product.setSupplier(supplierService.getById(supplierUuid));
+                if(supplierService.getById(supplierUuid) != null)
+                        product.setSupplier(supplierService.getById(supplierUuid)); // Set supplier
                 
                 productService.saveOrUpdate(product);
                 
@@ -133,8 +134,7 @@ public class AdminProductController {
             try 
             {
                 if(productService.getById(uuid).getCode().equals(product.getCode())
-                        || productService.getByCode(product.getCode()) == null
-                         && supplierService.getById(supplierUuid) != null)
+                        || productService.getByCode(product.getCode()) == null)
                 {
                     if(img.getBytes().length > 1)
                         product.setImage(img.getBytes());
@@ -145,7 +145,8 @@ public class AdminProductController {
 
                     product.setCreateDate(new Date());
                     
-                    product.setSupplier(supplierService.getById(supplierUuid)); // Set/Update supplier
+                    if(supplierService.getById(supplierUuid) != null)
+                        product.setSupplier(supplierService.getById(supplierUuid)); // Set/Update supplier
 
                     productService.saveOrUpdate(product); // Update Product
 

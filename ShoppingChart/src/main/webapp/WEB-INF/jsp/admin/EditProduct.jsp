@@ -86,14 +86,23 @@
                                             
                                             <label>Supplier</label>
                                             <select class="form-control" name="supplierUuid">
+                                            <c:choose>
+                                                    <c:when test="${requestScope.product.supplier == null }">
+                                                        <option value="null" selected  >Tidak Ada</option>
+                                                    </c:when>
+
+                                                    <c:otherwise>
+                                                        <option value="null"   >Tidak Ada</option>
+                                                    </c:otherwise>
+                                            </c:choose>
                                             <c:forEach var="supplier" items="${listSuppliers}">
                                                     <c:choose>
-                                                        <c:when test="${supplier.uuid.equals(requestScope.supplier.uuid) }">
+                                                        <c:when test="${supplier.uuid.equals(requestScope.product.supplier.uuid) }">
                                                             <option value="${supplier.uuid}" selected>${supplier.kodeSupplier} | ${supplier.namaSupplier}</option>
                                                         </c:when>
 
                                                         <c:otherwise>
-                                                            <c:if test="${!supplier.equals(requestScope.supplier.uuid) }">
+                                                            <c:if test="${!supplier.equals(requestScope.product.supplier.uuid) }">
                                                                 <option value="${supplier.uuid}"  >${supplier.kodeSupplier} | ${supplier.namaSupplier}</option>
                                                             </c:if>
                                                         </c:otherwise>
