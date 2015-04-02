@@ -119,18 +119,22 @@ public class AdminProductController {
         modelMap.addAttribute("product", productService.getById(uuid));
         modelMap.addAttribute("itemCategories", itemCategoryService.getAllByProductId(uuid));
         modelMap.addAttribute("listCategories", categoryService.getAllParent());
+        modelMap.addAttribute("listSuppliers", supplierService.getAll());
         return "admin/EditProduct";
     }
     
     @RequestMapping(value ="/detail/{uuid}", method = RequestMethod.POST)
     public String editProduct(ModelMap modelMap, @ModelAttribute Product product,
             @RequestParam(value = "categoryUuid", required = false) String categoryUuid
+            ,@RequestParam(value = "supplierUuid", required = false) String supplierUuid
             , @RequestParam(value = "img", required = false) MultipartFile img, @PathVariable String uuid
             , HttpServletRequest request) {
             
             try 
             {
-                if(productService.getById(uuid).getCode().equals(product.getCode()) || productService.getByCode(product.getCode()) == null)
+                if(productService.getById(uuid).getCode().equals(product.getCode())
+                        || productService.getByCode(product.getCode()) == null
+                         && supplierService.getById(supplierUuid) != null)
                 {
                     if(img.getBytes().length > 1)
                         product.setImage(img.getBytes());
@@ -140,6 +144,8 @@ public class AdminProductController {
                         product.setImage(img.getBytes());
 
                     product.setCreateDate(new Date());
+                    
+                    product.setSupplier(supplierService.getById(supplierUuid)); // Set/Update supplier
 
                     productService.saveOrUpdate(product); // Update Product
 

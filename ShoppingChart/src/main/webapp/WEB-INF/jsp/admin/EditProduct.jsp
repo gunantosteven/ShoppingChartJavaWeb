@@ -84,7 +84,23 @@
                                             <input value="${product.price}" name="price" class="form-control" placeholder="Enter text" type="number">
                                             <p class="help-block">Product Price</p>
                                             
-                                            
+                                            <label>Supplier</label>
+                                            <select class="form-control" name="supplierUuid">
+                                            <c:forEach var="supplier" items="${listSuppliers}">
+                                                    <c:choose>
+                                                        <c:when test="${supplier.uuid.equals(requestScope.supplier.uuid) }">
+                                                            <option value="${supplier.uuid}" selected>${supplier.kodeSupplier} | ${supplier.namaSupplier}</option>
+                                                        </c:when>
+
+                                                        <c:otherwise>
+                                                            <c:if test="${!supplier.equals(requestScope.supplier.uuid) }">
+                                                                <option value="${supplier.uuid}"  >${supplier.kodeSupplier} | ${supplier.namaSupplier}</option>
+                                                            </c:if>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                            </c:forEach>
+                                            </select>
+                                            <p class="help-block">Select Supplier</p>
                                         </div>   
                                          
                                         <input type='hidden' id="categories" name="categories" value="tidak bisa"/>
