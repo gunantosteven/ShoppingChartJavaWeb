@@ -110,8 +110,9 @@ public class CheckOutController {
         
         modelMap.addAttribute("amountCategories", itemCategoryService.getAllAmountParentCategory());
         modelMap.addAttribute("customer", c);
-        //  listOrderDetail to null
+        //  listOrderDetail and totalPrice to default
         request.getSession().setAttribute("listOrderDetail", null);
+        request.getSession().setAttribute("totalPrice", 0);
         
         return "checkout_success";
     }
