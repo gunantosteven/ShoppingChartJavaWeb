@@ -5,7 +5,11 @@
  */
 package com.gunsoft.controller.admin;
 
+import com.gunsoft.bean.Status;
+import com.gunsoft.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class IndexAdminController {
     
+    @Autowired
+    private OrderService orderService;
+    
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String index() {
+    public String index(ModelMap modelMap) {
+        modelMap.addAttribute("listNewOrder", orderService.getByStatusOrder(Status.DELIVERED));
         return "admin/dashboard";
     }
     

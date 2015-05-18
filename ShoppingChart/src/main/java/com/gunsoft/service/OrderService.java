@@ -69,6 +69,12 @@ public class OrderService extends BaseService<Order> {
         return (List<Order>) sessionFactory.getCurrentSession().createQuery("from Order o where o.customer.user.username  = :username ")
                          .setParameter("username", username).list();
     }
+    
+    @Transactional(readOnly=true)
+    public List<Order> getByStatusOrder(Status status) {
+        return (List<Order>) sessionFactory.getCurrentSession().createQuery("from Order o where o.status  = :status ")
+                         .setParameter("status", status).list();
+    }
 
     @Override
     public List<String[]> select(int start, int end, String orderby, String search) {
