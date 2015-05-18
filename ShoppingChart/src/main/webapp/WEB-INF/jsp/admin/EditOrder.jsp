@@ -71,12 +71,9 @@
                                             
                                             <label>Status</label>
                                             <select class="span1 form-control" name="status">
-                                                    <option value="" ${order.status.toString() == '' ? "selected" : ""}>-</option>
-                                                    <option value="CANCELED" ${order.status.toString() == 'Canceled' ? "selected" : ""}>Canceled.</option>
-                                                    <option value="DELIVERED" ${order.status.toString() == 'Delivered' ? "selected" : ""}>Delivered</option>
-                                                    <option value="PAYMENTERROR" ${order.status.toString() == 'Payment Error' ? "selected" : ""}>Payment Error</option>
-                                                    <option value="REFUND" ${order.status.toString() == 'Refund' ? "selected" : ""} >Refund</option>
-                                                    <option value="SEND" ${order.status.toString() == 'Send' ? "selected" : ""} >Send</option>
+                                                <c:forEach var="status" items="${listStatus}">
+                                                    <option value="${status.name()}" ${order.status == status ? "selected" : ""}>${status.toString()}</option>
+                                                </c:forEach>
                                             </select>
                                             <p class="help-block">Filled with Status</p>
                                             

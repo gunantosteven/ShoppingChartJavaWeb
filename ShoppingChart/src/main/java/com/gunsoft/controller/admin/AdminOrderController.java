@@ -52,6 +52,7 @@ public class AdminOrderController {
         modelMap.addAttribute("transactionActive", "active");
         modelMap.addAttribute("orderActive", "active");
         modelMap.addAttribute("order", orderService.getById(uuid));
+        modelMap.addAttribute("listStatus", Status.values());
         return "admin/EditOrder";
     }
     
