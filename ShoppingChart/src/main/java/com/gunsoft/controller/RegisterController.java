@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -52,6 +53,9 @@ public class RegisterController {
     
     @Autowired
     private ItemCategoryService itemCategoryService;
+    
+    @Autowired
+    private BCryptPasswordEncoder encoder;
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String page(ModelMap modelMap, @RequestParam String email) {
@@ -84,6 +88,8 @@ public class RegisterController {
         address.setFirstName(firstNameAddress);
         address.setLastName(lastNameAddress);
         address.setCustomer(customer);
+        
+        user.setPassword(encoder.encode(user.getPassword()));
         
         customer.setUser(user);
         customer.setAddress(address);

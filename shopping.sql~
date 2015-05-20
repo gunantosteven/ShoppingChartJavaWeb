@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `T_USERS` (
 --
 
 INSERT INTO `T_USERS` (`username`, `enabled`, `password`) VALUES
-('mkyong', '1', '$2a$10$MToynwcdQXSw0WpA7YoH0ejMQPvs1hVqSXv2gMfhDx6N2Im7x11ny');
+('mkyong', b'1', 'mkyong');
 
 -- --------------------------------------------------------
 

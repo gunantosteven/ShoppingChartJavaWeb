@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -42,6 +43,9 @@ public class AdminCustomerController {
     
     @Autowired 
     private MyUserDetailsService myUserDetailsService;
+    
+    @Autowired
+    private BCryptPasswordEncoder encoder;
     
     private Logger logger = Logger.getLogger(this.getClass());
     
@@ -80,6 +84,8 @@ public class AdminCustomerController {
                 address.setLastName(lastNameAddress);
                 address.setCustomer(customer);
 
+                user.setPassword(encoder.encode(user.getPassword()));
+                
                 customer.setUser(user);
                 customer.setAddress(address);
                 customerService.save(customer);
@@ -107,6 +113,8 @@ public class AdminCustomerController {
             address.setId(c.getUuid());
             address.setFirstName(firstNameAddress);
             address.setLastName(lastNameAddress);
+            
+            user.setPassword(encoder.encode(user.getPassword()));
 
             customer.setUuid(c.getUuid());
             customer.setUser(myUserDetailsService.getByUsername(user.getUsername()));
