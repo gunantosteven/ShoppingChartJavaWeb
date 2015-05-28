@@ -126,7 +126,7 @@
 				</div>
 			  </div><br/>
 			<div class="thumbnail">
-				<img src="${pageContext.request.contextPath}/themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+				<img src="${pageContext.request.contextPath}/themes/images/bca.gif" title="Bootshop Payment Methods" alt="Payments Methods">
 				<div class="caption">
 				  <h5>Payment Methods</h5>
 				</div>
